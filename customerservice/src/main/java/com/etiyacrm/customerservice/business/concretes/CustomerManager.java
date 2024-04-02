@@ -22,6 +22,7 @@ public class CustomerManager  implements CustomerService {
     private ModelMapperService modelMapperService;
     @Override
     public CreatedCustomerResponse add(CreateCustomerRequest createCustomerRequest) {
+        this.customerRepository.findByEmailIgnoreCase(createCustomerRequest.getEMail());
         Customer customer=this.modelMapperService.forRequest().map(createCustomerRequest,Customer.class);
         Customer createdCustomer=this.customerRepository.save(customer);
 
