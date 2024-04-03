@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -19,6 +20,9 @@ public class Customer extends BaseEntity {
     @Column(name="email")
     private String email;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private IndividualCustomer individualCustomer;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Address> addresses;
 }

@@ -1,12 +1,10 @@
 package com.etiyacrm.customerservice.api.controllers;
 
-import com.etiyacrm.customerservice.business.abstracts.IndividualCustomerService;
-import com.etiyacrm.customerservice.business.dtos.requests.customer.CreateCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.requests.customer.UpdateCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.responses.customer.*;
-import com.etiyacrm.customerservice.business.dtos.responses.individualCustomer.*;
+import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -49,8 +47,8 @@ public class IndividualCustomerController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
-    public List<GetIndividualCustomerListResponse> getAll(){
-        return individualCustomerService.getAll();
+    public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
+        return individualCustomerService.getAll(pageInfo);
     }
 
 

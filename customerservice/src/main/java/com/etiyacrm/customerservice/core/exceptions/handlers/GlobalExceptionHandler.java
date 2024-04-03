@@ -1,9 +1,9 @@
 package com.etiyacrm.customerservice.core.exceptions.handlers;
 
 
-import com.etiyacrm.customerservice.core.exceptions.problemdetails.BusinessProblemDetails;
-import com.etiyacrm.customerservice.core.exceptions.problemdetails.DataIntegrityViolationProblemDetails;
-import com.etiyacrm.customerservice.core.exceptions.problemdetails.ValidationProblemDetails;
+import com.etiyacrm.customerservice.core.exceptions.detaiils.BusinessProblemDetails;
+import com.etiyacrm.customerservice.core.exceptions.detaiils.DataIntegrityViolationProblemDetails;
+import com.etiyacrm.customerservice.core.exceptions.detaiils.ValidationProblemDetails;
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.core.exceptions.types.DataIntegrityException;
 import org.springframework.http.HttpStatus;
