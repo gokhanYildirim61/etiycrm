@@ -4,6 +4,7 @@ import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,10 @@ import java.util.Optional;
 @AllArgsConstructor
 public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
-    private CustomerBusinessRules customerBusinessRules;
-
+    private CustomerService customerService;
 
     public void individualCustomerEmailMustBeUnique(String email){
-        customerBusinessRules.customerEmailMustBeUnique(email);
+        customerService.findByEmailIgnoreCase(email);
     }
 
     public void individualCustomerNationalityIdMustBeUnique(String nationalId){

@@ -5,6 +5,7 @@ import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
@@ -24,15 +25,14 @@ import java.util.List;
 @AllArgsConstructor
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
     private IndividualCustomerRepository individualCustomerRepository;
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
         individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
-        Customer customer = new Customer();
-        customer.setEmail(createIndividualCustomerRequest.getEmail());
-        customer = customerRepository.save(customer); // Customer nesnesini kaydet ve geri döndürülen nesneyi kullan
+
+        Customer customer = customerService.addWithEmail(createIndividualCustomerRequest.getEmail());
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
         individualCustomer.setCustomer(customer);
