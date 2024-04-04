@@ -9,13 +9,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PageInfoResponse<T> {
+public class PageInfoResponse {
     private int page;
     private int size;
     private long totalElements;
     private int totalPages;
     private boolean hasNext;
     private boolean hasPrevious;
-    private List<T> content;
 
 }
