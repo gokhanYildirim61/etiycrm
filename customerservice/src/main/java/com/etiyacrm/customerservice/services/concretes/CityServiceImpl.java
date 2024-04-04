@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
@@ -38,4 +39,13 @@ public class CityServiceImpl implements CityService {
 //        return response;
         return CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
     }
+
+    @Override
+    public PageInfoResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+        Page<City> response = cityRepository.findAllByDeletedDateIsNull(pageable);
+        return CityMapper.INSTANCE.pageInfoResponseFromPageCity(response);
+    }
+
+
 }
