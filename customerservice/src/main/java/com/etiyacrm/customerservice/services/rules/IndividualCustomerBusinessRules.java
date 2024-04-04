@@ -14,13 +14,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
-//    public void individualCustomerEmailMustBeUnique(String email){
-//        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByEmailIgnoreCase(email.trim());
-//
-//        if(individualCustomer.isPresent()){
-//            throw new BusinessException("Email already exists");
-//        }
-//    }
+    private CustomerBusinessRules customerBusinessRules;
+
+
+    public void individualCustomerEmailMustBeUnique(String email){
+        customerBusinessRules.customerEmailMustBeUnique(email);
+    }
 
     public void individualCustomerNationalityIdMustBeUnique(String nationalId){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByNationalityIdIgnoreCase(nationalId.trim());

@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.exceptions.detaiils;
+package com.etiyacrm.customerservice.core.exceptions.details;
 
 
 import org.springframework.http.HttpStatus;

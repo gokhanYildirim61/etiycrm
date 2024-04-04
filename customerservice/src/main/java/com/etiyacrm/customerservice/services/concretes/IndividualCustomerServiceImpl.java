@@ -29,7 +29,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
-
+        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
         Customer customer = new Customer();
         customer.setEmail(createIndividualCustomerRequest.getEmail());
         customer = customerRepository.save(customer); // Customer nesnesini kaydet ve geri döndürülen nesneyi kullan
@@ -38,7 +38,9 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomer.setCustomer(customer);
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
-        return IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        CreatedIndividualCustomerResponse response =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        response.setCustomerId(customer.getId());
+        return response;
     }
 
     @Override
