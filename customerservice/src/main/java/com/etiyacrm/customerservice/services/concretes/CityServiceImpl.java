@@ -7,8 +7,8 @@ import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.city.CreatedCityResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityResponse;
+import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import com.etiyacrm.customerservice.services.mapper.CityMapper;
 import com.etiyacrm.customerservice.services.rules.CityBusinessRules;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,6 +44,22 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public UpdatedCityResponse update(UpdateCityRequest updateCityRequest) {
+        City city=cityRepository.findById(updateCityRequest.getId()).get();
+        cityBusinessRules.checkDeletedDate(city.getDeletedDate());
+        City updatedCity=CityMapper.INSTANCE.cityFromCityUpdatedCityRequest(updateCityRequest);
+        updatedCity=cityRepository.save(updatedCity);
+        return CityMapper.INSTANCE.updateCityResponseFromCity(updatedCity);
+    }
+
+    @Override
+    public GetCityResponse getById(long id) {
+        City city=cityRepository.findById(+id).get();
+        cityBusinessRules.checkDeletedDate(city.getDeletedDate());
+        return CityMapper.INSTANCE.getCityResponse(city);
+    }
+
+    @Override
     public GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<City> response = cityRepository.findAllByDeletedDateIsNull(pageable);
@@ -50,6 +68,15 @@ public class CityServiceImpl implements CityService {
         responses.setHasPrevious(response.hasPrevious());
         responses.setPage(pageInfo.getPage());
         return responses;
+    }
+
+    @Override
+    public DeletedCityResponse softDelete(long id) {
+        City city=cityRepository.findById(id).get();
+        cityBusinessRules.checkDeletedDate(city.getDeletedDate());
+        city.setDeletedDate(LocalDateTime.now());
+        cityRepository.save(city);
+        return CityMapper.INSTANCE.deleteCityResponseFromCity(city);
     }
 
 

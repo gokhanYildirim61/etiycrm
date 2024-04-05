@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,13 @@ public class CityBusinessRules {
         if (city.isPresent()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameAlreadyExists));
         }
+
     }
+
+    public void checkDeletedDate(LocalDateTime localDateTime) {
+        if (localDateTime != null) {
+            throw new BusinessException("The individual customer not found");
+        }
+    }
+
 }
