@@ -27,7 +27,7 @@ public class CityBusinessRules {
 
     public void checkDeletedDate(LocalDateTime localDateTime) {
         if (localDateTime != null) {
-            throw new BusinessException("The individual customer not found");
+            throw new BusinessException("The city not found");
         }
     }
 

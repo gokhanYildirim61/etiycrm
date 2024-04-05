@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -65,10 +66,25 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo) {
+
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+        Page<IndividualCustomer> response = individualCustomerRepository.findAllByDeletedDateIsNull(pageable);
+        List<GetIndividualCustomerListResponse> resultList = response.getContent().stream()
+                .map(individualCustomer -> {
+                    GetIndividualCustomerListResponse responseDto = IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer);
+                     responseDto.setCustomerId(individualCustomer.getCustomer().getId());
+                    return responseDto;
+                })
+                .collect(Collectors.toList());
+        return resultList;
+    }
+
+/*public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
-        return response.map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer)).getContent();
-    }
+        response.map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer)).getContent();
+
+    }*/
 
 
     @Override

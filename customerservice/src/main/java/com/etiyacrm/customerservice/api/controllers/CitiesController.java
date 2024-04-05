@@ -27,6 +27,7 @@ public class CitiesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "add")
     public CreatedCityResponse add(@Valid @RequestBody CreateCityRequest createCityRequest) {
         return cityService.add(createCityRequest);
     }
@@ -46,6 +47,7 @@ public class CitiesController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetList")
     public GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
         return cityService.getAllWithPaging(pageInfo);
     }
