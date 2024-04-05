@@ -7,7 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="GatewayServer" />
         <module name="discoveryserver" />
+        <module name="ConfigServer" />
       </profile>
       <profile name="Annotation profile for customerservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -25,6 +27,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConfigServer" options="-parameters" />
+      <module name="GatewayServer" options="-parameters" />
       <module name="customerservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
     </option>
