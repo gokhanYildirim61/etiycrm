@@ -1,9 +1,11 @@
 package com.etiyacrm.customerservice.api.controllers;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -44,12 +46,12 @@ public class IndividualCustomerController {
 
 
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "getAll")
-    public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
-        return individualCustomerService.getAll(pageInfo);
-    }
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    @Operation(summary = "getAll")
+//    public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
+//        return individualCustomerService.getAll(pageInfo);
+//    }
 
 
 
@@ -58,6 +60,13 @@ public class IndividualCustomerController {
     @Operation(summary = "delete")
     public DeletedIndividualCustomerResponse delete(@PathVariable long id){
         return  individualCustomerService.softDelete(id);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetList")
+    public GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo) {
+        return individualCustomerService.getAllWithPaging(pageInfo);
     }
 
 

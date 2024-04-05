@@ -4,6 +4,7 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
 import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.City;
+import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
@@ -69,6 +70,7 @@ public class CityServiceImpl implements CityService {
         responses.setPage(pageInfo.getPage());
         return responses;
     }
+
 
     @Override
     public DeletedCityResponse softDelete(long id) {
