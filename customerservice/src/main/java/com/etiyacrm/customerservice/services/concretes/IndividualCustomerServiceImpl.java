@@ -58,7 +58,9 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         updatedIndividualCustomer.setCustomer(customer);
         // updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
-        return IndividualCustomerMapper.INSTANCE.updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        updatedIndividualCustomerResponse.setCustomerId(customer.getId());
+        return updatedIndividualCustomerResponse;
     }
 
     @Override
