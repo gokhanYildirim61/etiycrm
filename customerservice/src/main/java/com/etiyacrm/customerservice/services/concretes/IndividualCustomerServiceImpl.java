@@ -108,8 +108,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return IndividualCustomerMapper.INSTANCE.deleteIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
     }
 
-    @Override
-    public GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo) {
-        return null;
-    }
+
+
+
 }

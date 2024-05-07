@@ -47,12 +47,12 @@ public class IndividualCustomerController {
 
 
 
-//    @GetMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    @Operation(summary = "getAll")
-//    public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
-//        return individualCustomerService.getAll(pageInfo);
-//    }
+   @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getAll")
+        public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
+        return individualCustomerService.getAll(pageInfo);
+   }
 
 
 
@@ -63,12 +63,12 @@ public class IndividualCustomerController {
         return  individualCustomerService.softDelete(id);
     }
 
-    @GetMapping
+    /*@GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetList")
     public GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo) {
         return individualCustomerService.getAllWithPaging(pageInfo);
-    }
+    }*/
 
 
 }

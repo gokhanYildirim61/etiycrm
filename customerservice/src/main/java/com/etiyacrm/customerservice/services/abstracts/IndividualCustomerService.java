@@ -18,9 +18,11 @@ public interface IndividualCustomerService {
 
     GetIndividualCustomerResponse getById(long id);
 
+     List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
+
     DeletedIndividualCustomerResponse softDelete(long id);
 
-    GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo);
+   // GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo);
 
-    List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
+   // List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
 }
