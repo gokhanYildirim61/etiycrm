@@ -6,6 +6,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityReques
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 
+
 import java.util.List;
 
 public interface CityService {

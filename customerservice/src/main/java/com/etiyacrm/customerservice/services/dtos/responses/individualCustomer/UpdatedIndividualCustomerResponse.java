@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 public class UpdatedIndividualCustomerResponse {
 
-    private long customerId;
+    private long id;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -20,4 +20,5 @@ public class UpdatedIndividualCustomerResponse {
     private String  fatherName;
     private String nationalityId;
     private LocalDate birthDate;
+    private long customerId;
 }

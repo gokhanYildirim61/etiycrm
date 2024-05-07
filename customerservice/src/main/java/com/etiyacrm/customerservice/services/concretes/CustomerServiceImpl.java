@@ -1,13 +1,11 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.entities.Customer;
-import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.rules.CustomerBusinessRules;
+import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @AllArgsConstructor
 @RequestMapping("customerservice/api/v1/individualCustomers")
 public class IndividualCustomerController {

@@ -1,10 +1,9 @@
 package com.etiyacrm.customerservice.services.rules;
 
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
-import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
-import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
+import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

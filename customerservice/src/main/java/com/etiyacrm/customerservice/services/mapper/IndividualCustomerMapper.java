@@ -4,6 +4,7 @@ import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
+
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

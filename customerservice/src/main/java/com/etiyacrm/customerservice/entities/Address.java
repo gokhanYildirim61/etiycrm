@@ -19,6 +19,13 @@ public class Address {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "street")
+    private String street;
+
+
+    @Column(name = "house_number")
+    private String houseNumber;
+
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;

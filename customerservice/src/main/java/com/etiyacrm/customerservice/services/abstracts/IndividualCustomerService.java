@@ -7,6 +7,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.Upd
 import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 
+
 import java.util.List;
 
 public interface IndividualCustomerService {

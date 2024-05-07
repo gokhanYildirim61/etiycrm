@@ -14,4 +14,7 @@ public class CreateAddressRequest {
     private String description;
     private long cityId;
     private long customerId;
+    private String houseNumber;
+    private String street;
+
 }

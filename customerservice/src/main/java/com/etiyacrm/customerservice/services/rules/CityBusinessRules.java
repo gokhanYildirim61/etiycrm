@@ -3,8 +3,8 @@ package com.etiyacrm.customerservice.services.rules;
 import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
-import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.messages.Messages;
+import com.etiyacrm.customerservice.repositories.CityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
