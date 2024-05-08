@@ -51,7 +51,7 @@ public class IndividualCustomer extends BaseEntity {
     @OneToMany(mappedBy = "individualCustomer")
     private List<Address> addresses;
 
-    //buradaki mapplemede problem gelebiliri geliştirilebilir
+//    //buradaki mapplemede problem gelebiliri geliştirilebilir
     @OneToOne(mappedBy = "individualCustomer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private ContactMedium contactMedium;
 }

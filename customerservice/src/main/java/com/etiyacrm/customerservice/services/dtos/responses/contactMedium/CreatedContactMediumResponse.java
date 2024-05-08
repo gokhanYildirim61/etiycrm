@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.dtos.responses.contactMedium;
 
 import com.etiyacrm.customerservice.entities.Customer;
+import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class CreatedContactMediumResponse {
 
     private long id;
+    private long individualCustomerId;
     private String mobilePhone;
     private String homePhone;
     private String email;
     private String fax;
-    private Customer customer;
 }

@@ -2,9 +2,7 @@ package com.etiyacrm.customerservice.entities;
 
 import com.etiyacrm.customerservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
@@ -17,6 +15,10 @@ public class ContactMedium extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @OneToOne
+    @JoinColumn(name = "individual_customer_id")
+    private IndividualCustomer individualCustomer;
+
     @Column(name = "mobile_Phone")
     private String mobilePhone;
 
@@ -28,9 +30,5 @@ public class ContactMedium extends BaseEntity {
 
     @Column(name = "fax")
     private String fax;
-
-    @OneToOne
-    @JoinColumn(name = "individual_customer_id")
-    private IndividualCustomer individualCustomer;
 
 }
