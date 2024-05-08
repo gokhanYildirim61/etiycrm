@@ -29,8 +29,13 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
-
+    //burada da hata gelebilir
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "individual_customer_id")
+    private IndividualCustomer individualCustomer;
+
+
+    // @ManyToOne
+    //@JoinColumn(name = "customer_id")
+    //private Customer customer;
 }

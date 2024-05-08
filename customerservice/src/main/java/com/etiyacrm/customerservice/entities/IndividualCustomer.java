@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -46,4 +47,13 @@ public class IndividualCustomer extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @OneToMany(mappedBy = "individualCustomer")
+    private List<Address> addresses;
+
+    //buradaki mapplemede problem gelebiliri geliştirilebilir
+    @OneToOne(mappedBy = "individualCustomer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private ContactMedium contactMedium;
 }
+
+

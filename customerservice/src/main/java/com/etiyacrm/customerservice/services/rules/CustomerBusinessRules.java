@@ -13,11 +13,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerBusinessRules {
     private CustomerRepository customerRepository;
-    public void customerEmailMustBeUnique(String email){
-        Optional<Customer> customer = customerRepository.findByEmailIgnoreCase(email.trim());
-
-        if(customer.isPresent()){
-            throw new BusinessException("Email already exists");
-        }
-    }
+//    public void customerEmailMustBeUnique(String email){
+//        Optional<Customer> customer = customerRepository.findByEmailIgnoreCase(email.trim());
+//
+//        if(customer.isPresent()){
+//            throw new BusinessException("Email already exists");
+//        }
+//    }
 }

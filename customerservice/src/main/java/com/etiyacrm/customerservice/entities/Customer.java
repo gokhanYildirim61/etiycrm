@@ -18,12 +18,13 @@ public class Customer extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="email")
-    private String email;
+    //@Column(name="email")
+   // private String email;
 
     @OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private IndividualCustomer individualCustomer;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Address> addresses;
+
+    //@OneToOne(mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    //private ContactMedium contactMedium;
 }

@@ -32,9 +32,9 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
-        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
+//        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
 
-        Customer customer = customerService.addWithEmail(createIndividualCustomerRequest.getEmail());
+        Customer customer = new Customer();
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
         individualCustomer.setCustomer(customer);
@@ -51,22 +51,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
         Customer customer = individualCustomer.getCustomer();
 
-        System.out.println("customer id" + customer.getId());
-
-        customer.setEmail(updateIndividualCustomerRequest.getEmail());
+        //bu alanı ContactMediuma çektik
+        //customer.setEmail(updateIndividualCustomerRequest.getEmail());
         individualCustomerBusinessRules.checkDeletedDate(individualCustomer.getDeletedDate());
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
         updatedIndividualCustomer.setCustomer(customer);
 
-        System.out.println("updatecustomerid"+ updatedIndividualCustomer.getCustomer().getId());
-        System.out.println("updatedid" + updatedIndividualCustomer.getId());
-
         // updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
-        System.out.println("updatecustomerid"+ updatedIndividualCustomer.getCustomer().getId());
-        System.out.println("updatedid" + updatedIndividualCustomer.getId());
-
-        return IndividualCustomerMapper.INSTANCE.updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.
+                updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        updatedIndividualCustomerResponse.setCustomerId(customer.getId());
+        return updatedIndividualCustomerResponse;
     }
 
     @Override

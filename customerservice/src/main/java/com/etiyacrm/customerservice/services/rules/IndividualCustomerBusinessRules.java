@@ -16,9 +16,9 @@ public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerService customerService;
 
-    public void individualCustomerEmailMustBeUnique(String email){
-        customerService.findByEmailIgnoreCase(email);
-    }
+//    public void individualCustomerEmailMustBeUnique(String email){
+//        customerService.findByEmailIgnoreCase(email);
+//    }
 
     public void individualCustomerNationalityIdMustBeUnique(String nationalId){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByNationalityIdIgnoreCase(nationalId.trim());

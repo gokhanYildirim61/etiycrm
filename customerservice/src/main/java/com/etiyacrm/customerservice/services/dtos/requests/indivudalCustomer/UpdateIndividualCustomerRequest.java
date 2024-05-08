@@ -23,8 +23,10 @@ public class UpdateIndividualCustomerRequest {
     @Pattern(regexp = "^[1-9]{1}[0-9]{9}[0,2,4,6,8]{1}$")
     private String nationalityId;
     private LocalDate birthDate;
-    @Pattern(regexp = "^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")
-    private String email;
+
+    //bu alanı ContactMediuma  çektik
+    //@Pattern(regexp = "^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")
+   //private String email;
 }
 
 
