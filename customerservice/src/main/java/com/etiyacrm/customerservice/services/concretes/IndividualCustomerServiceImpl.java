@@ -1,9 +1,11 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+//import com.etiya.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
+//import com.etiyacrm.customerservice.kafka.producer.CustomerProducer;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
@@ -29,7 +31,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerService customerService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
-    @Override
+//    private CustomerProducer customerProducer;
+//    @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
 //        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
@@ -42,6 +45,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         CreatedIndividualCustomerResponse response =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
         response.setCustomerId(customer.getId());
+//        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(response.getId(), response.getFirstName());
+//        customerProducer.sendMessage(customerCreatedEvent);
         return response;
     }
 

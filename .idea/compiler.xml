@@ -10,6 +10,7 @@
         <module name="discoveryserver" />
         <module name="ConfigServer" />
         <module name="GatewayServer" />
+        <module name="common" />
         <module name="searchservice" />
       </profile>
       <profile name="Annotation profile for customerservice" enabled="true">
@@ -30,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ConfigServer" options="-parameters" />
       <module name="GatewayServer" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="customerservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="searchservice" options="-parameters" />
