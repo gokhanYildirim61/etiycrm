@@ -1,4 +1,4 @@
-package com.etiya.common.events.customers;
+package com.etiyacrm.common.events.customers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,10 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerCreatedEvent {
-
     private long id;
-
-    private String firstName;
-
-
+    private String name;
 }
