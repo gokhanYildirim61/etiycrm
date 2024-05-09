@@ -69,7 +69,7 @@ public class CityServiceImpl implements CityService {
         responses.setPage(pageInfo.getPage());
         return responses;
     }
-
+//asd
     @Override
     public DeletedCityResponse softDelete(String id) {
         City city=cityRepository.findById(id).get();
