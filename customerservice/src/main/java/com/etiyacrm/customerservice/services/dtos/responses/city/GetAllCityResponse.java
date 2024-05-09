@@ -15,7 +15,7 @@ public class GetAllCityResponse {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
 
     @Column(name = "name")
     private String name;

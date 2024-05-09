@@ -35,7 +35,7 @@ public class ContactMediumController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getByID")
-    public GetContactMediumResponse getByID(@PathVariable long id ){
+    public GetContactMediumResponse getByID(@PathVariable String id ){
         return contactMediumService.getById(id);
     }
 }

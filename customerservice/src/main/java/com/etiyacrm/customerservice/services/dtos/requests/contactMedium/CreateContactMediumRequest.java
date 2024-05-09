@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreateContactMediumRequest {
     //private long id;
-    private long individualCustomerId;
+    private String individualCustomerId;
     private String mobilePhone;
     private String homePhone;
     private String email;

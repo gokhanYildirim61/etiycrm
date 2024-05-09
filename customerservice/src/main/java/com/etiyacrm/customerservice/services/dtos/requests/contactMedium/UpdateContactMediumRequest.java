@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UpdateContactMediumRequest {
 
-    private long id;
+    private String id;
     private String mobilePhone;
     private String homePhone;
     private String email;

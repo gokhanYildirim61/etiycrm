@@ -16,11 +16,11 @@ public interface IndividualCustomerService {
 
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
 
-    GetIndividualCustomerResponse getById(long id);
+    GetIndividualCustomerResponse getById(String id);
 
      List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
 
-    DeletedIndividualCustomerResponse softDelete(long id);
+    DeletedIndividualCustomerResponse softDelete(String id);
 
    // GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo);
 

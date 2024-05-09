@@ -1,6 +1,6 @@
 package com.etiya.searchservice.kafka;
 
-import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.service.abstracts.FilterService;
 import lombok.AllArgsConstructor;

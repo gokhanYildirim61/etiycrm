@@ -53,8 +53,8 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public GetCityResponse getById(long id) {
-        City city=cityRepository.findById(+id).get();
+    public GetCityResponse getById(String id) {
+        City city=cityRepository.findById(id).get();
         cityBusinessRules.checkDeletedDate(city.getDeletedDate());
         return CityMapper.INSTANCE.getCityResponse(city);
     }
@@ -71,7 +71,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public DeletedCityResponse softDelete(long id) {
+    public DeletedCityResponse softDelete(String id) {
         City city=cityRepository.findById(id).get();
         cityBusinessRules.checkDeletedDate(city.getDeletedDate());
         city.setDeletedDate(LocalDateTime.now());

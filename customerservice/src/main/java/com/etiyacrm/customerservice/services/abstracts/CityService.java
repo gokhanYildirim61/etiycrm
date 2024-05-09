@@ -15,10 +15,10 @@ public interface CityService {
 
     UpdatedCityResponse update(UpdateCityRequest updateCityRequest);
 
-    GetCityResponse getById(long id);
+    GetCityResponse getById(String id);
 
     GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo);
 
-    DeletedCityResponse softDelete(long id);
+    DeletedCityResponse softDelete(String id);
 
 }

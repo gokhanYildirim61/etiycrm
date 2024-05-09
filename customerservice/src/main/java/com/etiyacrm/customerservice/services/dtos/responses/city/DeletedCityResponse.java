@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DeletedCityResponse {
-    private long id;
+    private String id;
 }

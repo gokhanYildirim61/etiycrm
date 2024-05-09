@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class DeletedContactMediumResponse {
 
-    private long id;
+    private String id;
 
 }

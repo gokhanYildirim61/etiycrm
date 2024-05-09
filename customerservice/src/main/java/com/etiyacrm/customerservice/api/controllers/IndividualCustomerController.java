@@ -39,7 +39,7 @@ public class IndividualCustomerController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getByID")
-    public GetIndividualCustomerResponse getByID(@PathVariable long id ){
+    public GetIndividualCustomerResponse getByID(@PathVariable String id ){
         return individualCustomerService.getById(id);
     }
 
@@ -57,7 +57,7 @@ public class IndividualCustomerController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "delete")
-    public DeletedIndividualCustomerResponse delete(@PathVariable long id){
+    public DeletedIndividualCustomerResponse delete(@PathVariable String id){
         return  individualCustomerService.softDelete(id);
     }
 

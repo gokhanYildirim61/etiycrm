@@ -34,7 +34,7 @@ public class CitiesController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getByID")
-    public GetCityResponse getByID(@PathVariable long id ){
+    public GetCityResponse getByID(@PathVariable String id ){
         return cityService.getById(id);
     }
 
@@ -48,7 +48,7 @@ public class CitiesController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "delete")
-    public DeletedCityResponse delete(@PathVariable long id){
+    public DeletedCityResponse delete(@PathVariable String id){
         return  cityService.softDelete(id);
     }
 

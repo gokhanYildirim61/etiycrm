@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreatedAddressResponse {
-    private long id;
+    private String id;
     private String description;
-    private long cityId;
-    private long customerId;
+    private String cityId;
+    private String customerId;
     private String houseNumber;
     private String street;
 }

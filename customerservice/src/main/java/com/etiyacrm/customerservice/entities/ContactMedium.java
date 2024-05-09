@@ -13,7 +13,7 @@ public class ContactMedium extends BaseEntity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
 
     @OneToOne
     @JoinColumn(name = "individual_customer_id")

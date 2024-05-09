@@ -14,9 +14,9 @@ public interface ContactMediumService {
 
     UpdateContactMediumResponse update(UpdateContactMediumRequest updateContactMediumRequest);
 
-    GetContactMediumResponse getById(long id);
+    GetContactMediumResponse getById(String id);
 
-    DeletedContactMediumResponse softDelete(long id);
+    DeletedContactMediumResponse softDelete(String id);
 
 
 }

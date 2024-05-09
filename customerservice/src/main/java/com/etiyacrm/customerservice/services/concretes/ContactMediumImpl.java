@@ -49,12 +49,12 @@ public class ContactMediumImpl implements ContactMediumService {
     }
 
     @Override
-    public GetContactMediumResponse getById(long id) {
+    public GetContactMediumResponse getById(String id) {
         return null;
     }
 
     @Override
-    public DeletedContactMediumResponse softDelete(long id) {
+    public DeletedContactMediumResponse softDelete(String id) {
         return null;
     }
 }

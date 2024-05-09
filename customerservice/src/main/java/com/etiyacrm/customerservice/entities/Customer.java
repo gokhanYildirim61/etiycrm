@@ -16,13 +16,14 @@ public class Customer extends BaseEntity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
 
     //@Column(name="email")
    // private String email;
 
     @OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private IndividualCustomer individualCustomer;
+
 
 
     //@OneToOne(mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})

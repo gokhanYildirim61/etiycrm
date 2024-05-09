@@ -14,5 +14,5 @@ public class CustomerAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    public String id;
 }
