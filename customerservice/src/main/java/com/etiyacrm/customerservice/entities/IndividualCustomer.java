@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 public class IndividualCustomer extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     @Column(name = "first_name")
     private String firstName;

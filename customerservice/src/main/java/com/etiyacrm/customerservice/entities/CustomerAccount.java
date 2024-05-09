@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class CustomerAccount {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     public String id;
 }

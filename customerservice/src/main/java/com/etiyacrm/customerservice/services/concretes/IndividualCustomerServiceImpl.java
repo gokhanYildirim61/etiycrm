@@ -44,7 +44,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse response =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-        response.setCustomerId(customer.getId());
+       // response.setCustomerId(customer.getId());
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(response.getId(), response.getFirstName());
         customerProducer.sendMessage(customerCreatedEvent);
         return response;
@@ -62,7 +62,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
         updatedIndividualCustomer.setCustomer(customer);
 
-        // updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
+         updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.
                 updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
