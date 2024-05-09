@@ -25,6 +25,7 @@ public class Customer extends BaseEntity {
     private IndividualCustomer individualCustomer;
 
 
+
     //@OneToOne(mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     //private ContactMedium contactMedium;
 }
