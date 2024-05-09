@@ -21,7 +21,7 @@ public class Customer extends BaseEntity {
     //@Column(name="email")
    // private String email;
 
-    @OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(mappedBy = "customer")
     private IndividualCustomer individualCustomer;
 
 

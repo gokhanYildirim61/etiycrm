@@ -44,15 +44,14 @@ public class IndividualCustomer extends BaseEntity {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "individualCustomer")
     private List<Address> addresses;
 
-//    //buradaki mapplemede problem gelebiliri geliştirilebilir
-    @OneToOne(mappedBy = "individualCustomer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @OneToOne(mappedBy = "individualCustomer")
     private ContactMedium contactMedium;
 }
 

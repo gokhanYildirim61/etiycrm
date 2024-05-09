@@ -15,6 +15,5 @@ public class UpdateContactMediumRequest {
     private String homePhone;
     private String email;
     private String fax;
-    private Customer customer;
 
 }

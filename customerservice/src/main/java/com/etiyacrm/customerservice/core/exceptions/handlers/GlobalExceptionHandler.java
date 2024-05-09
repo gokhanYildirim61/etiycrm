@@ -2,20 +2,18 @@ package com.etiyacrm.customerservice.core.exceptions.handlers;
 
 
 import com.etiyacrm.customerservice.core.exceptions.details.BusinessProblemDetails;
-import com.etiyacrm.customerservice.core.exceptions.details.DataIntegrityViolationProblemDetails;
 import com.etiyacrm.customerservice.core.exceptions.details.ValidationProblemDetails;
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
-import com.etiyacrm.customerservice.core.exceptions.types.DataIntegrityException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,29 +26,22 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ResponseStatus(code=HttpStatus.BAD_REQUEST)
     public ValidationProblemDetails handleValidationException(MethodArgumentNotValidException exception){
-        //reflection ile ilgili sınıfın ilgili alanlarında herhangi bir error durumu var mı onu geziyorum
-        //burada name'in durumuna baktığımız için key olarak name fieldım value olarak kendi verdiğim hata mesajım döner
-        //dönen hata resultlerinin field errrorlarını getir
-        List<Map<String, String>> errorList =
-                exception.getBindingResult().getFieldErrors().stream().map(
-                        fieldError -> {
-                            Map<String, String> validationError = new HashMap<>();
-                            validationError.put(fieldError.getField(), fieldError.getDefaultMessage());
-                            return validationError;
-                        }).collect(Collectors.toList());
-        ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
-        validationProblemDetails.setErrors(errorList);
-        return validationProblemDetails;
-    }
 
-    @ExceptionHandler({DataIntegrityException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public DataIntegrityViolationProblemDetails handleDataIntegrityException(DataIntegrityException dataIntegrityException){
-        DataIntegrityViolationProblemDetails dataIntegrityViolationProblemDetails = new DataIntegrityViolationProblemDetails();
-        dataIntegrityViolationProblemDetails.setDetail(dataIntegrityException.getMessage());
-        return dataIntegrityViolationProblemDetails;
+        List<Map<String, String>> validationErrors = new ArrayList<>();
+
+        exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
+            Map<String, String> validationError = new HashMap<>();
+            validationError.put("field", fieldError.getField());
+            validationError.put("message", fieldError.getDefaultMessage());
+            validationErrors.add(validationError);
+        });
+
+
+        ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
+        validationProblemDetails.setErrors(validationErrors);
+        return validationProblemDetails;    //Dönüş tipi liste olamaz çünkü map tutuyor
     }
 
 }

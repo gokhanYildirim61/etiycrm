@@ -15,9 +15,6 @@ public class ContactMedium extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToOne
-    @JoinColumn(name = "individual_customer_id")
-    private IndividualCustomer individualCustomer;
 
     @Column(name = "mobile_Phone")
     private String mobilePhone;
@@ -30,5 +27,10 @@ public class ContactMedium extends BaseEntity {
 
     @Column(name = "fax")
     private String fax;
+
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinColumn(name = "individual_customer_id")
+    private IndividualCustomer individualCustomer;
+
 
 }

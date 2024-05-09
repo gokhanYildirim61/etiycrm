@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class CustomerAccount {
 
     @Id
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.UUID)
     public String id;
 }
