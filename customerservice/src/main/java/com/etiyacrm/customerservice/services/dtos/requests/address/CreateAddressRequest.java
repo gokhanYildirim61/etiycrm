@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateAddressRequest {
+
     private String description;
     private String cityId;
     private String customerId;
