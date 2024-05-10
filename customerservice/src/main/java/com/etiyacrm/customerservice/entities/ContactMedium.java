@@ -30,7 +30,7 @@ public class ContactMedium extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "customer_id")
-    private Customer Customer;
+    private Customer customer;
 
 
 }
