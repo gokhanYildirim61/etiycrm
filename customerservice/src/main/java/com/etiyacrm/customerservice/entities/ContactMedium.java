@@ -29,8 +29,8 @@ public class ContactMedium extends BaseEntity {
     private String fax;
 
     @OneToOne
-    @JoinColumn(name = "individual_customer_id")
-    private IndividualCustomer individualCustomer;
+    @JoinColumn(name = "customer_id")
+    private Customer Customer;
 
 
 }
