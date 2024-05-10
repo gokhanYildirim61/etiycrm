@@ -1,5 +1,6 @@
 package com.etiyacrm.customerservice.services.mapper;
 
+import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
@@ -21,6 +22,7 @@ public interface IndividualCustomerMapper {
     IndividualCustomer individualCustomerFromIndividualUpdatedCustomerRequest(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
     UpdatedIndividualCustomerResponse updateIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer);
     DeletedIndividualCustomerResponse deleteIndividualCustomerResponseFromIndividualCustomer(IndividualCustomer individualCustomer);
+    CustomerCreatedEvent customerCreatedEventFromCreatedIndividualCustomerResponse(CreatedIndividualCustomerResponse createdIndividualCustomerResponse);
     @Mapping(source = "pageIndividualCustomer.content", target = "items")
     GetListResponse<GetIndividualCustomerListResponse> pageInfoResponseFromPageIndividualResponseIndividualCustomer(Page<IndividualCustomer> pageIndividualCustomer);
 

@@ -37,16 +37,19 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
 //        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
 
+
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
         individualCustomer.setCustomer(new Customer());
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
-        CreatedIndividualCustomerResponse response =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-       // response.setCustomerId(customer.getId());
-        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(response.getId(), response.getFirstName());
+        CreatedIndividualCustomerResponse createdIndividualCustomerResponse =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        createdIndividualCustomerResponse.setCustomerId(createdIndividualCustomer.getCustomer().getId());
+        CustomerCreatedEvent customerCreatedEvent = IndividualCustomerMapper.INSTANCE.customerCreatedEventFromCreatedIndividualCustomerResponse(createdIndividualCustomerResponse);
+        customerCreatedEvent.setCustomerId(createdIndividualCustomer.getCustomer().getId());
         customerProducer.sendMessage(customerCreatedEvent);
+        System.out.println(customerCreatedEvent);
 
-        return response;
+        return createdIndividualCustomerResponse;
     }
 
         //Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable); kontrol için aldık

@@ -20,6 +20,13 @@ public class CustomerCreatedConsumer {
         Customer customer = new Customer();
         customer.setId(customerCreatedEvent.getId());
         customer.setFirstName(customerCreatedEvent.getFirstName());
+        customer.setMiddleName(customerCreatedEvent.getMiddleName());
+        customer.setLastname(customerCreatedEvent.getLastname());
+        customer.setMotherName(customerCreatedEvent.getMotherName());
+        customer.setFatherName(customerCreatedEvent.getFatherName());
+        customer.setGender(customerCreatedEvent.getGender());
+        customer.setNationalityId(customerCreatedEvent.getNationalityId());
+        customer.setBirthDate(customerCreatedEvent.getBirthDate());
         LOGGER.info(String.format("Customer created event consumer => %s", customerCreatedEvent.toString()));
         this.filterService.add(customer);
     }
