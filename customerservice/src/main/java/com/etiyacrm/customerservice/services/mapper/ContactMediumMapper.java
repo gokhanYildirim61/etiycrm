@@ -15,7 +15,7 @@ public interface ContactMediumMapper {
     ContactMediumMapper INSTANCE = Mappers.getMapper(ContactMediumMapper.class);
 
     ContactMedium contactMediumFromCreateContactMediumRequest(CreateContactMediumRequest createContactMediumRequest);
-    ContactMedium contactMediumFromUpdatedContactMediumResponse(UpdateContactMediumRequest updateContactMediumRequest);
+    ContactMedium contactMediumFromUpdatedContactMediumRequest(UpdateContactMediumRequest updateContactMediumRequest);
     GetContactMediumResponse getContactMediumResponse(ContactMedium contactMedium);
     CreatedContactMediumResponse createdContactMediumResponseFromContactMedium(ContactMedium contactMedium);
     UpdateContactMediumResponse updateContactMediumResponseFromContactMedium(ContactMedium contactMedium);

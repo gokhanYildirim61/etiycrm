@@ -6,17 +6,11 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.Create
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.DeletedContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.UpdateContactMediumResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.GetIndividualCustomerResponse;
 
 public interface ContactMediumService {
 
     CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest);
-
     UpdateContactMediumResponse update(UpdateContactMediumRequest updateContactMediumRequest);
-
     GetContactMediumResponse getById(String id);
-
     DeletedContactMediumResponse softDelete(String id);
-
-
 }

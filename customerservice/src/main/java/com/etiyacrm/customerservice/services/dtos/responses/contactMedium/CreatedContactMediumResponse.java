@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreatedContactMediumResponse {
-
     private String id;
     private String customerId;
     private String mobilePhone;

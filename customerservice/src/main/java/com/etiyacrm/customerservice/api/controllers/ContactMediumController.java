@@ -4,6 +4,7 @@ import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.CreatedContactMediumResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.DeletedContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.UpdateContactMediumResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,5 +38,12 @@ public class ContactMediumController {
     @Operation(summary = "getByID")
     public GetContactMediumResponse getByID(@PathVariable String id ){
         return contactMediumService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "delete")
+    public DeletedContactMediumResponse delete(@PathVariable String id){
+        return  contactMediumService.softDelete(id);
     }
 }

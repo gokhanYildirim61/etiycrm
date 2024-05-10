@@ -11,12 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateContactMediumRequest {
-    //private long id;
     private String customerId;
     private String mobilePhone;
     private String homePhone;
     private String email;
     private String fax;
-
-
 }

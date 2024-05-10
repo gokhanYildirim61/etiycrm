@@ -14,50 +14,52 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.Delete
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.UpdateContactMediumResponse;
 import com.etiyacrm.customerservice.services.mapper.ContactMediumMapper;
+import com.etiyacrm.customerservice.services.rules.ContactMediumRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
 public class ContactMediumImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
-    private IndividualCustomerRepository individualCustomerRepository;
-    private CustomerRepository customerRepository;
-
-//    @Override
-//    public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-//        //TODO(Business rules)
-//        ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
-//        IndividualCustomer individualCustomer = individualCustomerRepository.getById(createContactMediumRequest.getIndividualCustomerId());
-//        ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
-//        createdContactMedium.setIndividualCustomer(individualCustomer);
-//        CreatedContactMediumResponse response = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
-//        return response;
-//    }
+    private CustomerRepository customerRepository; // Bu repo burada kullanılmalı mı?
+    private ContactMediumRules contactMediumRules;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-        Customer customer = customerRepository.getById(createContactMediumRequest.getCustomerId());
+        Customer customer = customerRepository.findById(createContactMediumRequest.getCustomerId()).get();
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
         contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse response = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
-       response.setCustomerId(customer.getId());
-        return null;
+        response.setCustomerId(customer.getId());
+        return response;
     }
 
     @Override
     public UpdateContactMediumResponse update(UpdateContactMediumRequest updateContactMediumRequest) {
-        return null;
+        ContactMedium contactMedium = contactMediumRepository.findById(updateContactMediumRequest.getId()).get();
+        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        ContactMedium updatedContactMedium = ContactMediumMapper.INSTANCE.contactMediumFromUpdatedContactMediumRequest(updateContactMediumRequest);
+        updatedContactMedium = contactMediumRepository.save(updatedContactMedium);
+        return ContactMediumMapper.INSTANCE.updateContactMediumResponseFromContactMedium(updatedContactMedium);
     }
 
     @Override
     public GetContactMediumResponse getById(String id) {
-        return null;
+        ContactMedium contactMedium = contactMediumRepository.findById(id).get();
+        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        return ContactMediumMapper.INSTANCE.getContactMediumResponse(contactMedium);
     }
 
     @Override
     public DeletedContactMediumResponse softDelete(String id) {
-        return null;
+        ContactMedium contactMedium = contactMediumRepository.findById(id).get();
+        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        contactMedium.setDeletedDate(LocalDateTime.now());
+        contactMediumRepository.save(contactMedium);
+        return ContactMediumMapper.INSTANCE.deleteContactMediumResponseFromContactMedium(contactMedium);
     }
 }

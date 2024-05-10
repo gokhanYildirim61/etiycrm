@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdateContactMediumResponse {
-
     private String id;
+    private String customerId;
     private String mobilePhone;
     private String homePhone;
     private String email;
