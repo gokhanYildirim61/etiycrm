@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.idea/dataSources/11ef6317-100b-4dc6-9e58-38b93185759b.xml
 /.idea/dataSources/afa4b72f-a942-4c34-9b12-a4bd6d034e7a.xml
 /.idea/dataSources/11ef6317-100b-4dc6-9e58-38b93185759b/storage_v2/_src_/database/crmcustomer.vENqog.meta
@@ -7,3 +8,11 @@
 /.idea/dataSources/11ef6317-100b-4dc6-9e58-38b93185759b/storage_v2/_src_/database/crmcustomer.vENqog/schema/information_schema.FNRwLQ.meta
 /.idea/dataSources/11ef6317-100b-4dc6-9e58-38b93185759b/storage_v2/_src_/database/crmcustomer.vENqog/schema/pg_catalog.0S1ZNQ.meta
 /.idea/dataSources/11ef6317-100b-4dc6-9e58-38b93185759b/storage_v2/_src_/database/crmcustomer.vENqog/schema/public.abK9xQ.meta
+=======
+/.idea/dataSources/94ab4012-fc01-455a-b064-c99b041edfab.xml
+/.idea/dataSources/94ab4012-fc01-455a-b064-c99b041edfab/storage_v2/_src_/database/crmcustomer.vENqog.meta
+
+/.idea/dataSources/94ab4012-fc01-455a-b064-c99b041edfab/storage_v2/_src_/database/crmcustomer.vENqog/schema/information_schema.FNRwLQ.meta
+/.idea/dataSources/94ab4012-fc01-455a-b064-c99b041edfab/storage_v2/_src_/database/crmcustomer.vENqog/schema/pg_catalog.0S1ZNQ.meta
+/.idea/dataSources/94ab4012-fc01-455a-b064-c99b041edfab/storage_v2/_src_/database/crmcustomer.vENqog/schema/public.abK9xQ.meta
+>>>>>>> origin/master

@@ -37,19 +37,19 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
 //        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
 
-        Customer customer = new Customer();
-
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
-        individualCustomer.setCustomer(customer);
+        individualCustomer.setCustomer(new Customer());
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse response =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
        // response.setCustomerId(customer.getId());
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(response.getId(), response.getFirstName());
         customerProducer.sendMessage(customerCreatedEvent);
+
         return response;
     }
 
+        //Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable); kontrol için aldık
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
 

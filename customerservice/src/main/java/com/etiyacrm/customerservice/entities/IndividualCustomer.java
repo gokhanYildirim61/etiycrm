@@ -48,8 +48,6 @@ public class IndividualCustomer extends BaseEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "individualCustomer")
-    private List<Address> addresses;
 
     @OneToOne(mappedBy = "individualCustomer")
     private ContactMedium contactMedium;
