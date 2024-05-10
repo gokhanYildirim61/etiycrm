@@ -30,12 +30,9 @@ public class Address {
     @JoinColumn(name = "city_id")
     private City city;
     //burada da hata gelebilir
+
     @ManyToOne
-    @JoinColumn(name = "individual_customer_id")
-    private IndividualCustomer individualCustomer;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-
-    // @ManyToOne
-    //@JoinColumn(name = "customer_id")
-    //private Customer customer;
 }
