@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "search-customer")
 public class Customer {
     @Id
@@ -17,5 +17,4 @@ public class Customer {
 
     @Field(name = "firstName")
     private String firstName;
-
 }

@@ -16,6 +16,6 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public void add(Customer customer) {
-    this.filterRepository.save(customer);
+        this.filterRepository.save(customer);
     }
 }
