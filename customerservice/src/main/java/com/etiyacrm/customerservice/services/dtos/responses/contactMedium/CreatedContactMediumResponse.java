@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CreatedContactMediumResponse {
 
     private String id;
-    private String individualCustomerId;
+    private String customerId;
     private String mobilePhone;
     private String homePhone;
     private String email;

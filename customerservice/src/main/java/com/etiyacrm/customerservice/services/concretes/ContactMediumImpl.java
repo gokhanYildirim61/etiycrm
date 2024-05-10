@@ -1,8 +1,10 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.entities.ContactMedium;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
+import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 public class ContactMediumImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
     private IndividualCustomerRepository individualCustomerRepository;
+    private CustomerRepository customerRepository;
 
 //    @Override
 //    public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
@@ -34,13 +37,13 @@ public class ContactMediumImpl implements ContactMediumService {
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-        IndividualCustomer individualCustomer = individualCustomerRepository.getById(createContactMediumRequest.getIndividualCustomerId());
+        Customer customer = customerRepository.getById(createContactMediumRequest.getCustomerId());
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
-        contactMedium.setIndividualCustomer(individualCustomer);
+        contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse response = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
-        response.setIndividualCustomerId(individualCustomer.getId());
-        return response;
+       response.setCustomerId(customer.getId());
+        return null;
     }
 
     @Override

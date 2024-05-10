@@ -13,4 +13,5 @@ public interface AddressMapper {
     GetAllAddressResponse getAllAddressResponseFromAddress(Address address);
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
+
 }
