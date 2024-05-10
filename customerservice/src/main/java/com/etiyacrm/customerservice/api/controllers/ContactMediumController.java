@@ -20,7 +20,7 @@ public class ContactMediumController {
     private ContactMediumService contactMediumService;
 
     @PostMapping
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "add")
     public CreatedContactMediumResponse add(@Valid @RequestBody CreateContactMediumRequest createContactMediumRequest){
         return contactMediumService.add(createContactMediumRequest);

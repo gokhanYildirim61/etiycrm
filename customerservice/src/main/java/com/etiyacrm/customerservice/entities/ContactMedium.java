@@ -8,6 +8,7 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "contact_mediums")
 public class ContactMedium extends BaseEntity {
 
     @Id

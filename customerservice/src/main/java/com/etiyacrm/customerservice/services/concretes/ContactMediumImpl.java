@@ -2,10 +2,8 @@ package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
-import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.repositories.CustomerRepository;
-import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
@@ -43,15 +41,21 @@ public class ContactMediumImpl implements ContactMediumService {
         ContactMedium contactMedium = contactMediumRepository.findById(updateContactMediumRequest.getId()).get();
         contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
         ContactMedium updatedContactMedium = ContactMediumMapper.INSTANCE.contactMediumFromUpdatedContactMediumRequest(updateContactMediumRequest);
+        System.out.println(contactMedium.getCustomer() == null);
+        updatedContactMedium.setCustomer(contactMedium.getCustomer());
         updatedContactMedium = contactMediumRepository.save(updatedContactMedium);
-        return ContactMediumMapper.INSTANCE.updateContactMediumResponseFromContactMedium(updatedContactMedium);
+        UpdateContactMediumResponse response = ContactMediumMapper.INSTANCE.updateContactMediumResponseFromContactMedium(updatedContactMedium);
+        response.setCustomerId(updatedContactMedium.getCustomer().getId());
+        return response;
     }
 
     @Override
     public GetContactMediumResponse getById(String id) {
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
-        return ContactMediumMapper.INSTANCE.getContactMediumResponse(contactMedium);
+        GetContactMediumResponse response = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
+        response.setCustomerId(contactMedium.getCustomer().getId());
+        return response;
     }
 
     @Override
