@@ -14,7 +14,7 @@ public class CustomerCreatedEvent {
     private String customerId;
     private String firstName;
     private String middleName;
-    private String lastname;
+    private String lastName;
     private String motherName;
     private String fatherName;
     private String gender;

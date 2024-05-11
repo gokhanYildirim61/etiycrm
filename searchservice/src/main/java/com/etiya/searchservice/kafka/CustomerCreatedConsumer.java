@@ -21,7 +21,7 @@ public class CustomerCreatedConsumer {
         customer.setId(customerCreatedEvent.getId());
         customer.setFirstName(customerCreatedEvent.getFirstName());
         customer.setMiddleName(customerCreatedEvent.getMiddleName());
-        customer.setLastname(customerCreatedEvent.getLastname());
+        customer.setLastName(customerCreatedEvent.getLastName());
         customer.setMotherName(customerCreatedEvent.getMotherName());
         customer.setFatherName(customerCreatedEvent.getFatherName());
         customer.setGender(customerCreatedEvent.getGender());

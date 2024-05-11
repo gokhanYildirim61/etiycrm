@@ -17,9 +17,6 @@ public class Customer {
     @Id
     private String id;
 
-    @Field(name = "customerId")
-    private String customerId;
-
     @Field(name = "firstName")
     private String firstName;
 
@@ -27,7 +24,7 @@ public class Customer {
     private String middleName;
 
     @Field(name = "lastname")
-    private String lastname;
+    private String lastName;
 
     @Field(name = "motherName")
     private String motherName;

@@ -17,4 +17,11 @@ public class FilterServiceImpl implements FilterService {
     public void add(Customer customer) {
         this.filterRepository.save(customer);
     }
+
+    @Override
+    public Customer searchByNationalityId(String nationalityId) {
+        return filterRepository.searchByNationalityId(nationalityId);
+    }
+
+
 }
