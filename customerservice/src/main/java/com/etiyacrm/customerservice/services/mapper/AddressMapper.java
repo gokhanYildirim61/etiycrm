@@ -21,7 +21,10 @@ public interface AddressMapper {
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
 
+    @Mapping(source = "cityId" , target = "city.id")
+    @Mapping(source = "customerId" , target = "customer.id")
     Address addressFromAddressUpdatedAddressRequest(UpdateAddressRequest updateAddressRequest);
+
 
     UpdatedAddressResponse updateAddressResponseFromAddress(Address address);
 

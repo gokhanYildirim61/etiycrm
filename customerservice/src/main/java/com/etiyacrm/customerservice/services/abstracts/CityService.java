@@ -2,6 +2,7 @@ package com.etiyacrm.customerservice.services.abstracts;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
@@ -16,6 +17,8 @@ public interface CityService {
     UpdatedCityResponse update(UpdateCityRequest updateCityRequest);
 
     GetCityResponse getById(String id);
+
+    City getById2(String id);
 
     GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo);
 

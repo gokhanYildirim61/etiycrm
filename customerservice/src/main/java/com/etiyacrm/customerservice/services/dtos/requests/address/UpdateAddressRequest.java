@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UpdateAddressRequest {
     private String id;
+    private String customerId;
     private String cityId;
     private String description;
     private String houseNumber;

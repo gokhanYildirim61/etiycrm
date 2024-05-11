@@ -29,17 +29,17 @@ import java.time.LocalDateTime;
 public class AddressServiceImpl implements AddressService {
     private AddressRepository addressRepository;
     private AddressBusinessRules addressBusinessRules;
-    private CustomerRepository customerRepository;
-    private CityRepository cityRepository;
+    private CityService cityService;
+    private CustomerService customerService;
 
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
         Address address= AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         Address createdAddress= addressRepository.save(address);
-        Customer customer=customerRepository.findById(createAddressRequest.getCustomerId()).get();
+        Customer customer=customerService.getById(createAddressRequest.getCustomerId());
          createdAddress.setCustomer(customer);
 
-        City city=cityRepository.findById(createAddressRequest.getCityId()).get();
+        City city=cityService.getById2(createAddressRequest.getCityId());
         createdAddress.setCity(city);
         addressRepository.save(createdAddress);
         CreatedAddressResponse createdAddressResponse=AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
@@ -52,9 +52,14 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest) {
         Address address = addressRepository.findById(updateAddressRequest.getId()).get();
-        Address updatedAddress=AddressMapper.INSTANCE.addressFromAddressUpdatedAddressRequest(updateAddressRequest);
-        updatedAddress=addressRepository.save(updatedAddress);
-        return AddressMapper.INSTANCE.updateAddressResponseFromAddress(updatedAddress);
+        Address updatedAddress= AddressMapper.INSTANCE.addressFromAddressUpdatedAddressRequest(updateAddressRequest);
+        updatedAddress.setCustomer(address.getCustomer());
+        updatedAddress= addressRepository.save(updatedAddress);
+        UpdatedAddressResponse updatedAddressResponse=AddressMapper.INSTANCE.updateAddressResponseFromAddress(updatedAddress);
+        updatedAddressResponse.setCustomerId(updatedAddress.getCustomer().getId());
+        updatedAddressResponse.setCityId(updatedAddress.getCity().getId());
+        return updatedAddressResponse;
+
     }
 
     @Override
@@ -70,6 +75,7 @@ public class AddressServiceImpl implements AddressService {
     public GetListResponse<GetAllAddressResponse> getALLWithPaging(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getPage());
         Page<Address> response =addressRepository.findAllByDeletedDateIsNull(pageable);
+
         GetListResponse<GetAllAddressResponse> responses = AddressMapper.INSTANCE.pageInfoResponseFromPageCity(response);
         responses.setHasNext(response.hasNext());
         responses.setHasPrevious(response.hasPrevious());
@@ -83,7 +89,11 @@ public class AddressServiceImpl implements AddressService {
         addressBusinessRules.checkDeletedDate(address.getDeletedDate());
         address.setDeletedDate(LocalDateTime.now());
         addressRepository.save(address);
-        return AddressMapper.INSTANCE.deleteAddressResponseFromAddress(address);
+
+        DeletedAddressResponse deletedAddressResponse=AddressMapper.INSTANCE.deleteAddressResponseFromAddress(address);
+        deletedAddressResponse.setCityId(address.getCity().getId());
+        deletedAddressResponse.setCustomerId(address.getCustomer().getId());
+        return deletedAddressResponse;
 
     }
 }

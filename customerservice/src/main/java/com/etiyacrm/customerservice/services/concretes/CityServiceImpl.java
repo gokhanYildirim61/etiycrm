@@ -60,6 +60,11 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public City getById2(String id) {
+        return cityRepository.findById(id).get();
+    }
+
+    @Override
     public GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<City> response = cityRepository.findAllByDeletedDateIsNull(pageable);
