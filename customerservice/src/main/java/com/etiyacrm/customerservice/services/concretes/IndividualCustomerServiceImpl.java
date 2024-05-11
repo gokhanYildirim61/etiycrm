@@ -35,7 +35,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 //    @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
-//        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
         individualCustomerBusinessRules.checkIfNationalIdExists(
                 createIndividualCustomerRequest.getNationalityId(),
                 createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
@@ -78,7 +77,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public GetIndividualCustomerResponse getById(String id) {
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
-        individualCustomerBusinessRules.checkDeletedDate(individualCustomer.getDeletedDate());
+        Customer customer = customerService.getById(id);
+        individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         return IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponse(individualCustomer);
     }
 
@@ -107,11 +107,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public DeletedIndividualCustomerResponse softDelete(String id) {
-        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
-        individualCustomerBusinessRules.checkDeletedDate(individualCustomer.getDeletedDate());
-        individualCustomer.setDeletedDate(LocalDateTime.now());
-        individualCustomerRepository.save(individualCustomer);
-        return IndividualCustomerMapper.INSTANCE.deleteIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+        Customer customer = customerService.getById(id);
+        individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
+        customer.setDeletedDate(LocalDateTime.now());
+        customer = customerService.setDeletedDate(customer);
+        return IndividualCustomerMapper.INSTANCE.deleteCustomerResponseFromCustomer(customer);
     }
 
 

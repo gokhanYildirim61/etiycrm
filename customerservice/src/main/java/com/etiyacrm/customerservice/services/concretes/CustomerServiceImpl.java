@@ -7,6 +7,8 @@ import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -18,6 +20,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id).get();
     }
 
+    @Override
+    public Customer setDeletedDate(Customer customer) {
+        return customerRepository.save(customer);
+
+    }
 
 
 }

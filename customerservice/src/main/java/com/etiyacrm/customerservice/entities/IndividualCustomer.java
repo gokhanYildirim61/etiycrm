@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="individual_customers")
 @Data
-@PrimaryKeyJoinColumn(name = "customer_id")
+@PrimaryKeyJoinColumn(name = "id")
 public class IndividualCustomer extends Customer {
 
 
