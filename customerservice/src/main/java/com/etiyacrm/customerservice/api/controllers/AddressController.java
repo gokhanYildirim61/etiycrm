@@ -11,9 +11,12 @@ import com.etiyacrm.customerservice.services.dtos.responses.adress.*;
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+@RestController
+@AllArgsConstructor
+@RequestMapping("customerservice/api/v1/addresses")
 public class AddressController {
     private AddressService addressService;
 
