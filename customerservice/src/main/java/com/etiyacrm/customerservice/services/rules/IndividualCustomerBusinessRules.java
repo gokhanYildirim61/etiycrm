@@ -1,5 +1,6 @@
 package com.etiyacrm.customerservice.services.rules;
 
+import com.etiyacrm.customerservice.adapters.CustomerCheckService;
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class IndividualCustomerBusinessRules {
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerService customerService;
+    private CustomerCheckService customerCheckService;
 
 //    public void individualCustomerEmailMustBeUnique(String email){
 //        customerService.findByEmailIgnoreCase(email);
@@ -34,5 +36,11 @@ public class IndividualCustomerBusinessRules {
         }
     }
 
+    public void checkIfNationalIdExists(String nationalityId, String firstName, String lastName, int birthDate) throws Exception {
 
+        if(!customerCheckService.checkIfRealPerson(nationalityId, firstName, lastName, birthDate)){
+            throw new BusinessException("Not a valid person");
+        }
+
+    }
 }

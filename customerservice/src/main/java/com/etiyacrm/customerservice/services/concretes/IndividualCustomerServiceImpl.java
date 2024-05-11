@@ -33,9 +33,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private CustomerProducer customerProducer;
 //    @Override
-    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
 //        individualCustomerBusinessRules.individualCustomerEmailMustBeUnique(createIndividualCustomerRequest.getEmail());
+        individualCustomerBusinessRules.checkIfNationalIdExists(
+                createIndividualCustomerRequest.getNationalityId(),
+                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
 
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
