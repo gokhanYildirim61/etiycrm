@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Where(clause = "deletedDate IS NULL")
+@Where(clause = "deleted_date IS NULL")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends BaseEntity {
     @Id

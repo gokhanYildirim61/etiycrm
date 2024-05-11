@@ -2,17 +2,15 @@ package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.kafka.producer.CustomerProducer;
-import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
-import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
+import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
-
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import com.etiyacrm.customerservice.services.mapper.IndividualCustomerMapper;
 import com.etiyacrm.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
@@ -32,7 +30,8 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private CustomerService customerService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private CustomerProducer customerProducer;
-//    @Override
+
+    @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
         individualCustomerBusinessRules.checkIfNationalIdExists(
