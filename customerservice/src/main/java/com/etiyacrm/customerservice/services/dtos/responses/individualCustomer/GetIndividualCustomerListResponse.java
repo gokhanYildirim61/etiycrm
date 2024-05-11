@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Data
 public class GetIndividualCustomerListResponse {
     private String id;
-    private String customerId;
     private String firstName;
     private String middleName;
     private String lastName;

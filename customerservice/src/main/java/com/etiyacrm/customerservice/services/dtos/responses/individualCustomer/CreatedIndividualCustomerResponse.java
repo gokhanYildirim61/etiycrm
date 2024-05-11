@@ -20,5 +20,4 @@ public class CreatedIndividualCustomerResponse {
     private String  fatherName;
     private String nationalityId;
     private LocalDate birthDate;
-    private String customerId;
 }

@@ -20,13 +20,9 @@ public class UpdateIndividualCustomerRequest {
     private String gender;
     private String motherName;
     private String  fatherName;
-    @Pattern(regexp = "^[1-9]{1}[0-9]{9}[0,2,4,6,8]{1}$")
     private String nationalityId;
     private LocalDate birthDate;
 
-    //bu alanı ContactMediuma  çektik
-    //@Pattern(regexp = "^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")
-   //private String email;
 }
 
 

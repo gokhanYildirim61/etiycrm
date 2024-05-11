@@ -20,7 +20,7 @@ public class CityBusinessRules {
         Optional<City> city = cityRepository.findByNameIgnoreCase(name);
 
         if (city.isPresent()) {
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameAlreadyExists));
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameExists));
         }
 
     }

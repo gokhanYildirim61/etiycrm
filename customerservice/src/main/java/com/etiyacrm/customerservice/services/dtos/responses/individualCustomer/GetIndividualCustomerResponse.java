@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class GetIndividualCustomerResponse {
-    private String customerId;
+
     private String firstName;
     private String middleName;
     private String lastName;

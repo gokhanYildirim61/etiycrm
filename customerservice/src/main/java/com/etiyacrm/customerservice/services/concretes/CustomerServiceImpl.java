@@ -13,18 +13,11 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
     CustomerBusinessRules customerBusinessRules;
 
+    @Override
+    public Customer getById(String id) {
+        return customerRepository.findById(id).get();
+    }
 
-    //bu alanı ContactMediuma çektik
 
-//    @Override
-//    public void findByEmailIgnoreCase(String email) {
-//        customerBusinessRules.customerEmailMustBeUnique(email);
-//    }
-//
-//    @Override
-//    public Customer addWithEmail(String email) {
-//        Customer customer = new Customer();
-//        customer.setEmail(email);
-//        return customerRepository.save(customer);
-//    }
+
 }

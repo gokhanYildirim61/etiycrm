@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
+
 import java.util.List;
 
 @Entity
@@ -12,17 +14,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Where(clause = "deletedDate IS NULL")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends BaseEntity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    //@Column(name="email")
-   // private String email;
-
-    @OneToOne(mappedBy = "customer")
-    private IndividualCustomer individualCustomer;
 
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
@@ -30,7 +29,4 @@ public class Customer extends BaseEntity {
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
 
-
-    //@OneToOne(mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    //private ContactMedium contactMedium;
 }

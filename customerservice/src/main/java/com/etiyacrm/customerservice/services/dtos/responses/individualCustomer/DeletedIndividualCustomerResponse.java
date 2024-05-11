@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class DeletedIndividualCustomerResponse {
     private String id;
-    private String customerId;
 }
 
 

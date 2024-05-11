@@ -42,13 +42,13 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
-        individualCustomer.setCustomer(new Customer());
+
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-        createdIndividualCustomerResponse.setCustomerId(createdIndividualCustomer.getCustomer().getId());
+
         CustomerCreatedEvent customerCreatedEvent = IndividualCustomerMapper.INSTANCE.customerCreatedEventFromCreatedIndividualCustomerResponse(createdIndividualCustomerResponse);
-        customerCreatedEvent.setCustomerId(createdIndividualCustomer.getCustomer().getId());
+
         customerProducer.sendMessage(customerCreatedEvent);
         System.out.println(customerCreatedEvent);
 
@@ -60,19 +60,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
-        Customer customer = individualCustomer.getCustomer();
+        Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
 
-        //bu alanı ContactMediuma çektik
-        //customer.setEmail(updateIndividualCustomerRequest.getEmail());
-        individualCustomerBusinessRules.checkDeletedDate(individualCustomer.getDeletedDate());
+
+        individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
-        updatedIndividualCustomer.setCustomer(customer);
+
 
          updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.
                 updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
-        updatedIndividualCustomerResponse.setCustomerId(customer.getId());
+
         return updatedIndividualCustomerResponse;
     }
 
@@ -91,7 +90,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         List<GetIndividualCustomerListResponse> resultList = response.getContent().stream()
                 .map(individualCustomer -> {
                     GetIndividualCustomerListResponse responseDto = IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer);
-                     responseDto.setCustomerId(individualCustomer.getCustomer().getId());
+
                     return responseDto;
                 })
                 .collect(Collectors.toList());

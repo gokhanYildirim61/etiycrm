@@ -23,14 +23,10 @@ public class CreateIndividualCustomerRequest {
     private String motherName;
     private String  fatherName;
     @NotBlank
-    //@Pattern(regexp = "^[1-9]{1}[0-9]{9}[0,2,4,6,8]{1}$")
     private String nationalityId;
     @NotNull
     private LocalDate birthDate;
 
-    //bu alanı ContactMediuma çektik
-    // @NotBlank
-   // @Pattern(regexp = "^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")
-    //private String email;
+
 
 }
