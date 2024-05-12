@@ -3,7 +3,6 @@ spring:
     name: discoveryserver
 server:
   port: 8888
-
 eureka:
   client:
     registerWithEureka: false
