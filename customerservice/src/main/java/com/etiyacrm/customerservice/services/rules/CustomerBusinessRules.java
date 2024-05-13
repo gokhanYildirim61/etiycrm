@@ -2,6 +2,7 @@ package com.etiyacrm.customerservice.services.rules;
 
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 
+import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -20,4 +21,11 @@ public class CustomerBusinessRules {
 //            throw new BusinessException("Email already exists");
 //        }
 //    }
+
+    public void checkIfIdNotExists(String id){
+        Optional<Customer> customer=customerRepository.findById(id);
+        if (!customer.isPresent()){
+            throw new BusinessException("check if customerId not exists");
+        }
+    }
 }

@@ -3,6 +3,7 @@ package com.etiyacrm.customerservice.services.rules;
 import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
 import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,16 @@ public class CityBusinessRules {
         }
     }
 
+    public void validateCityName(String name){
+        if(name.matches(".*\\d.*")){
+            throw new BusinessException("City name must not contain digits");
+        }
+    }
+
+    public void checkIfIdNotExists(String id){
+        Optional<City> city=cityRepository.findById(id);
+        if (!city.isPresent()){
+            throw new BusinessException("check if cityId not exists");
+        }
+    }
 }

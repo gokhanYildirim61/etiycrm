@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityReques
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CityService {
@@ -23,5 +24,7 @@ public interface CityService {
     GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo);
 
     DeletedCityResponse softDelete(String id);
+
+
 
 }

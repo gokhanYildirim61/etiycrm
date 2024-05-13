@@ -34,12 +34,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
+
         Address address= AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
-        Address createdAddress= addressRepository.save(address);
         Customer customer=customerService.getById(createAddressRequest.getCustomerId());
+        City city=cityService.getById2(createAddressRequest.getCityId());
+        Address createdAddress= addressRepository.save(address);
+
          createdAddress.setCustomer(customer);
 
-        City city=cityService.getById2(createAddressRequest.getCityId());
+
         createdAddress.setCity(city);
         addressRepository.save(createdAddress);
         CreatedAddressResponse createdAddressResponse=AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);

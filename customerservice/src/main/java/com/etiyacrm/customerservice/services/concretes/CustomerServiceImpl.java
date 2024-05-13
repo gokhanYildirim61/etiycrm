@@ -17,6 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getById(String id) {
+        customerBusinessRules.checkIfIdNotExists(id);
         return customerRepository.findById(id).get();
     }
 
