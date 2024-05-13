@@ -12,6 +12,9 @@ public interface FilterService {
 
 
 
+
+
+
     PageableResponse<GetAllCustomer> search(
             String nationalityId, String customerId, String accountId,
             String firstName, String middleName, String lastName,

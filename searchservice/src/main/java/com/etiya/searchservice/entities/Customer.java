@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -40,5 +41,10 @@ public class Customer {
 
     @Field(name = "birthDate")
     private LocalDate birthDate;
+
+    @Field(name = "deletedDate")
+    private LocalDateTime deletedDate;
+
+
 
 }

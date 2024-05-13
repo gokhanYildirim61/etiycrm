@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerDeletedEvent;
 import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.entities.Customer;
@@ -114,9 +115,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public DeletedIndividualCustomerResponse softDelete(String id) {
         Customer customer = customerService.getById(id);
+        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         customer.setDeletedDate(LocalDateTime.now());
         customer = customerService.setDeletedDate(customer);
+        CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromIndividualCustomer(individualCustomer);
+        customerUpdatedEvent.setId(customer.getId());
+        customerUpdatedEvent.setDeletedDate(customer.getDeletedDate());
+        customerProducer.sendMessage(customerUpdatedEvent);
         return IndividualCustomerMapper.INSTANCE.deleteCustomerResponseFromCustomer(customer);
     }
 

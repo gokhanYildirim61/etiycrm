@@ -28,6 +28,7 @@ public class CustomerUpdatedConsumer {
         customer.setGender(customerUpdatedEvent.getGender());
         customer.setNationalityId(customerUpdatedEvent.getNationalityId());
         customer.setBirthDate(customerUpdatedEvent.getBirthDate());
+        customer.setDeletedDate(customerUpdatedEvent.getDeletedDate());
         LOGGER.info(String.format("Customer updated event consumer => %s", customerUpdatedEvent.toString()));
         this.filterService.updateCustomer(customer);
     }
