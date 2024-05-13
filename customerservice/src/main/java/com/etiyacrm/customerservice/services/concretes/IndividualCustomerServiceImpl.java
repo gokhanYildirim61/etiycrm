@@ -34,9 +34,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
-        individualCustomerBusinessRules.checkIfNationalIdExists(
-                createIndividualCustomerRequest.getNationalityId(),
-                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
+
+//        TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
+//        TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
+//        individualCustomerBusinessRules.checkIfNationalIdExists(
+//                createIndividualCustomerRequest.getNationalityId(),
+//                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
 
 
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);

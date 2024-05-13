@@ -2,7 +2,7 @@ package com.etiya.searchservice.kafka;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiya.searchservice.entities.Customer;
-import com.etiya.searchservice.service.abstracts.FilterService;
+import com.etiya.searchservice.services.abstracts.FilterService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
