@@ -1,5 +1,6 @@
 package com.etiya.searchservice.services.concretes;
 
+import com.etiya.searchservice.entities.ContactMedium;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.repository.FilterRepository;
 import com.etiya.searchservice.services.abstracts.FilterService;
@@ -24,6 +25,11 @@ public class FilterServiceImpl implements FilterService {
 
     private FilterRepository filterRepository;
     private final MongoTemplate mongoTemplate;
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        this.filterRepository.save(customer);
+    }
 
     @Override
     public void add(Customer customer) {
