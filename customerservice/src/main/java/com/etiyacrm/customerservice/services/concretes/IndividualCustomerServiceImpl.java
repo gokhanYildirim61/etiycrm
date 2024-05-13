@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
@@ -63,15 +64,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
         Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
 
-
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
 
-
-         updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
+        updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.
                 updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+
+        CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromUpdatedIndividualCustomerResponse(updatedIndividualCustomerResponse);
+
+        customerProducer.sendMessage(customerUpdatedEvent);
+        System.out.println(customerUpdatedEvent);
 
         return updatedIndividualCustomerResponse;
     }

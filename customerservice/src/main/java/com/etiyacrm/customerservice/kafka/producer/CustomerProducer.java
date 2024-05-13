@@ -3,6 +3,7 @@ package com.etiyacrm.customerservice.kafka.producer;
 
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,16 @@ public class CustomerProducer {
 
         Message<CustomerCreatedEvent> message = MessageBuilder.withPayload(customerCreatedEvent)
                 .setHeader(KafkaHeaders.TOPIC, "customer-created")
+                .build();
+
+        kafkaTemplate.send(message);
+    }
+
+    public void sendMessage(CustomerUpdatedEvent customerUpdatedEvent) {
+        LOGGER.info(String.format("Customer updated =>%s", customerUpdatedEvent.toString()));
+
+        Message<CustomerUpdatedEvent> message = MessageBuilder.withPayload(customerUpdatedEvent)
+                .setHeader(KafkaHeaders.TOPIC, "customer-updated")
                 .build();
 
         kafkaTemplate.send(message);
