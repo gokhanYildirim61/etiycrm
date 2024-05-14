@@ -1,6 +1,5 @@
 package com.etiya.searchservice.services.concretes;
 
-import com.etiya.searchservice.entities.ContactMedium;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.repository.FilterRepository;
 import com.etiya.searchservice.services.abstracts.FilterService;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 

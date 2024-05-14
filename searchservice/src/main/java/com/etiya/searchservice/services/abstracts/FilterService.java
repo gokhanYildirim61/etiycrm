@@ -1,6 +1,5 @@
 package com.etiya.searchservice.services.abstracts;
 
-import com.etiya.searchservice.entities.ContactMedium;
 import com.etiya.searchservice.entities.Customer;
 import com.etiya.searchservice.services.response.GetAllCustomer;
 import com.etiyacrm.common.utilities.results.PageableResponse;

@@ -45,6 +45,7 @@ public class Customer {
     @Field(name = "deletedDate")
     private LocalDateTime deletedDate;
 
-
+    @Field(name = "orderNumber")
+    private String orderNumber;
 
 }
