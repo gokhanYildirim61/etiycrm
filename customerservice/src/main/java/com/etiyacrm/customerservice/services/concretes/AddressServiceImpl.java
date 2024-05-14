@@ -71,7 +71,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public GetListResponse<GetAllAddressResponse> getALLWithPaging(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getPage());
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<Address> response =addressRepository.findAllByDeletedDateIsNull(pageable);
 
         GetListResponse<GetAllAddressResponse> responses = AddressMapper.INSTANCE.pageInfoResponseFromPageCity(response);
