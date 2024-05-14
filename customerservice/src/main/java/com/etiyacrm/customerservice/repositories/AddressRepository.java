@@ -8,5 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AddressRepository extends JpaRepository<Address, String> {
     Page<Address> findAllByDeletedDateIsNull(Pageable pageable);
 
-    boolean existsById(String id);
 }
