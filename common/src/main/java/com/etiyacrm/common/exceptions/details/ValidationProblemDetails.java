@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.exceptions.details;
+package com.etiyacrm.common.exceptions.details;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

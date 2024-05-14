@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.business.paging;
+package com.etiyacrm.common.business.paging;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

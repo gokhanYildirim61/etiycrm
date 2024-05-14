@@ -1,6 +1,6 @@
-package com.etiyacrm.customerservice.core.business.responses;
+package com.etiyacrm.common.business.responses;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfoResponse;
+import com.etiyacrm.common.business.paging.PageInfoResponse;
 
 import java.util.ArrayList;
 import java.util.List;

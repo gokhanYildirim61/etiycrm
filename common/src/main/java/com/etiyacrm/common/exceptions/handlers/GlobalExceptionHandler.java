@@ -1,9 +1,9 @@
-package com.etiyacrm.customerservice.core.exceptions.handlers;
+package com.etiyacrm.common.exceptions.handlers;
 
 
-import com.etiyacrm.customerservice.core.exceptions.details.BusinessProblemDetails;
-import com.etiyacrm.customerservice.core.exceptions.details.ValidationProblemDetails;
-import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
+import com.etiyacrm.common.exceptions.details.BusinessProblemDetails;
+import com.etiyacrm.common.exceptions.details.ValidationProblemDetails;
+import com.etiyacrm.common.exceptions.types.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

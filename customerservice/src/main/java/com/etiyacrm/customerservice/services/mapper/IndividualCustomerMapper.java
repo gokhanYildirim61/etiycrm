@@ -1,9 +1,8 @@
 package com.etiyacrm.customerservice.services.mapper;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
-import com.etiyacrm.common.events.customers.CustomerDeletedEvent;
 import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;

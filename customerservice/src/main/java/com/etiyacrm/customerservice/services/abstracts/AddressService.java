@@ -1,11 +1,10 @@
 package com.etiyacrm.customerservice.services.abstracts;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.paging.PageInfo;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.services.dtos.requests.address.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.address.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.adress.*;
-import com.etiyacrm.customerservice.services.dtos.responses.city.UpdatedCityResponse;
 
 public interface AddressService {
 

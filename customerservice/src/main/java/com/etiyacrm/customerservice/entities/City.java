@@ -1,8 +1,7 @@
 package com.etiyacrm.customerservice.entities;
 
-import com.etiyacrm.customerservice.core.entities.BaseEntity;
+import com.etiyacrm.common.entities.BaseEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

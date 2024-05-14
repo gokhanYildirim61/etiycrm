@@ -1,7 +1,7 @@
 package com.etiyacrm.customerservice.services.rules;
 
-import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
-import com.etiyacrm.customerservice.core.exceptions.types.BusinessException;
+import com.etiyacrm.common.business.abstracts.MessageService;
+import com.etiyacrm.common.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

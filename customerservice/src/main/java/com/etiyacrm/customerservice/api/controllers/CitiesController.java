@@ -1,7 +1,7 @@
 package com.etiyacrm.customerservice.api.controllers;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.paging.PageInfo;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;

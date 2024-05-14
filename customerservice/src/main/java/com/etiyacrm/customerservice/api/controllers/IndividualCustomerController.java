@@ -1,6 +1,6 @@
 package com.etiyacrm.customerservice.api.controllers;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;

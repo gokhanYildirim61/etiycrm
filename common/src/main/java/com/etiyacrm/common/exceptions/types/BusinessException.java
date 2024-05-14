@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.exceptions.types;
+package com.etiyacrm.common.exceptions.types;
 
 public class BusinessException extends RuntimeException{
     public BusinessException(String message){

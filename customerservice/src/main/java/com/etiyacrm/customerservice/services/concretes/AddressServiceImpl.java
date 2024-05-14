@@ -1,13 +1,11 @@
 package com.etiyacrm.customerservice.services.concretes;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.paging.PageInfo;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.Address;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
-import com.etiyacrm.customerservice.repositories.CityRepository;
-import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;

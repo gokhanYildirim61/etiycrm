@@ -1,14 +1,11 @@
 package com.etiyacrm.customerservice.api.controllers;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.paging.PageInfo;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
 import com.etiyacrm.customerservice.services.dtos.requests.address.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.address.UpdateAddressRequest;
-import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
-import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.adress.*;
-import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

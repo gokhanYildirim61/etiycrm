@@ -1,6 +1,6 @@
-package com.etiyacrm.customerservice.core.business.concretes;
+package com.etiyacrm.common.business.concretes;
 
-import com.etiyacrm.customerservice.core.business.abstracts.MessageService;
+import com.etiyacrm.common.business.abstracts.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

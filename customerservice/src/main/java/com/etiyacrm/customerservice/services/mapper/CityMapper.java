@@ -1,6 +1,6 @@
 package com.etiyacrm.customerservice.services.mapper;
 
-import com.etiyacrm.customerservice.core.business.responses.GetListResponse;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;

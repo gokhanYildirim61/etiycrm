@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.entities;
+package com.etiyacrm.common.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
