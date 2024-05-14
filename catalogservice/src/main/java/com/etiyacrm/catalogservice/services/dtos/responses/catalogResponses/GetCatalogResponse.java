@@ -1,4 +1,4 @@
-package com.etiyacrm.catalogservice.services.dtos.requests.catalogRequests;
+package com.etiyacrm.catalogservice.services.dtos.responses.catalogResponses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCatalogRequest {
+public class GetCatalogResponse {
+    private String id;
     private String name;
     private String productId;
 }

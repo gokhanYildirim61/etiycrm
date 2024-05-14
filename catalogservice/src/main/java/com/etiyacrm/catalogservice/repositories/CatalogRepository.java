@@ -1,4 +1,7 @@
 package com.etiyacrm.catalogservice.repositories;
 
-public class CatalogRepository {
+import com.etiyacrm.catalogservice.entities.Catalog;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CatalogRepository extends JpaRepository<Catalog, String> {
 }

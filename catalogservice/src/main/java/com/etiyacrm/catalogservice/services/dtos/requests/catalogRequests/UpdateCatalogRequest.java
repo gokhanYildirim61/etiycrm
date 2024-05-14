@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCatalogRequest {
+public class UpdateCatalogRequest {
+    private String id;
     private String name;
     private String productId;
 }
