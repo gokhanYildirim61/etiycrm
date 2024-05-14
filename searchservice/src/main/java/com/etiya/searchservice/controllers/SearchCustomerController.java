@@ -29,6 +29,6 @@ public class SearchCustomerController {
             if (result.getTotalElements()>0){
                 return ResponseEntity.ok(result);
             }
-            return ResponseEntity.badRequest().body(result);
+            return ResponseEntity.notFound().build();
     }
 }

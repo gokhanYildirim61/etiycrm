@@ -2,6 +2,7 @@ package com.etiyacrm.common.exceptions.handlers;
 
 
 import com.etiyacrm.common.exceptions.details.BusinessProblemDetails;
+import com.etiyacrm.common.exceptions.details.InternalServerProblemDetails;
 import com.etiyacrm.common.exceptions.details.ValidationProblemDetails;
 import com.etiyacrm.common.exceptions.types.BusinessException;
 import org.springframework.http.HttpStatus;
@@ -18,17 +19,16 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler({BusinessException.class})
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public BusinessProblemDetails handleBusinessException(BusinessException businessExceptions){
-        BusinessProblemDetails businessProblemDetails = new BusinessProblemDetails();
-        businessProblemDetails.setDetail(businessExceptions.getMessage());
-        return businessProblemDetails;
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public BusinessProblemDetails handleBusinessException(BusinessException exception) {
+        BusinessProblemDetails problemDetails = new BusinessProblemDetails();
+        problemDetails.setDetail(exception.getMessage());
+        return problemDetails;
     }
 
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    @ResponseStatus(code=HttpStatus.BAD_REQUEST)
-    public ValidationProblemDetails handleValidationException(MethodArgumentNotValidException exception){
-
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ValidationProblemDetails handleValidationException(MethodArgumentNotValidException exception) {
         List<Map<String, String>> validationErrors = new ArrayList<>();
 
         exception.getBindingResult().getFieldErrors().forEach(fieldError -> {
@@ -38,20 +38,14 @@ public class GlobalExceptionHandler {
             validationErrors.add(validationError);
         });
 
-
         ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
         validationProblemDetails.setErrors(validationErrors);
-        return validationProblemDetails;    //Dönüş tipi liste olamaz çünkü map tutuyor
+        return validationProblemDetails;
     }
 
+    @ExceptionHandler({Exception.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public InternalServerProblemDetails handleException(InternalServerProblemDetails exception) {
+        return new InternalServerProblemDetails();
+    }
 }
-
-//arasındaki ilişki aşağıdaki gibi
-//Rental branch - city, rental branch - rental
-//id si 1 olan araç kiralandı diyebilmeli state hemen değişmeli eğer başkasına kiralanmışsahand
-//yeni bir kiralama yapıldığında eski arabanın krialanabilir duruma (Available) state kısmının gelmesi gerekiyopr
-//exception türlerini araştırın runtime ve business dışında olanları
-//veritabanına bağlanamama - data integrity violation
-//INTERNAL_SERVER_ERROR - status kısmı
-//@ExceptionHandler({bunu kendin bakacaksın SqlException olabilir, diğerleri hepsine bakman gerekiyor.class})
-//internalservererror için bir exception yapısı kurup problemdetails ve handleException metodunu yazarak sisteme dahil edilecek

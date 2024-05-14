@@ -22,17 +22,17 @@ public class ContactMedium extends BaseEntity {
     private String id;
 
 
-    @Column(name = "mobile_Phone")
+    @Column(name = "mobile_phone")
     private String mobilePhone;
 
-    @Column(name = "home_Phone")
+    @Column(name = "home_phone")
     private String homePhone;
 
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Invalid email address")
+
     @Column(name="email")
     private String email;
 
-    @Pattern(regexp = "^\\+90[-\\s]?\\(?(\\d{3})\\)?[-\\s]?(\\d{3})[-\\s]?(\\d{4})$", message = "Invalid Turkish fax number")
+
     @Column(name = "fax")
     private String fax;
 
