@@ -1,23 +1,31 @@
 package com.etiyacrm.customerservice.api.controllers;
 
+import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.CreatedContactMediumResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.DeletedContactMediumResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.GetContactMediumResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.UpdateContactMediumResponse;
+import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.*;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.GetIndividualCustomerListResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("customerservice/api/v1/contactMediums")
 public class ContactMediumController {
     private ContactMediumService contactMediumService;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getAll")
+    public List<GetContactMediumListResponse> getAll(){
+        return contactMediumService.getAll();
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
