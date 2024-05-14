@@ -12,7 +12,7 @@ public interface IndividualCustomerService {
 
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception;
 
-    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
+    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception;
 
     GetIndividualCustomerResponse getById(String id);
 

@@ -30,7 +30,7 @@ public class IndividualCustomerController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "update")
-    public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest){
+    public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception {
         return individualCustomerService.update(updateIndividualCustomerRequest);
     }
 

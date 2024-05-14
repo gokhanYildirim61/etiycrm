@@ -37,6 +37,13 @@ public class IndividualCustomerBusinessRules {
         }
     }
 
+    public void checkIfIndividualCustomerExists(String id){
+        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
+        if (!individualCustomer.isPresent()){
+            throw new BusinessException("The individual customer not found");
+        }
+    }
+
     public void checkIfNationalIdExists(String nationalityId, String firstName, String lastName, int birthDate) throws Exception {
 
         if(!customerCheckService.checkIfRealPerson(nationalityId, firstName, lastName, birthDate)){

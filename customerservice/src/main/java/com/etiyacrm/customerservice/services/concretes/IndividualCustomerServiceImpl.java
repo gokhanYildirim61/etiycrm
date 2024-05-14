@@ -59,32 +59,31 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         //Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable); kontrol için aldık
     @Override
-    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
-
-        IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception {
+        //IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
         Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
-
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
+//                TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
+//                TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
+//                individualCustomerBusinessRules.checkIfNationalIdExists(
+//                        updateIndividualCustomerRequest.getNationalityId(),
+//                        updateIndividualCustomerRequest.getFirstName(), updateIndividualCustomerRequest.getLastName(), updateIndividualCustomerRequest.getBirthDate().getYear());
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
-
         updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
-        UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.
-                updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
-
+        UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
         CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromUpdatedIndividualCustomerResponse(updatedIndividualCustomerResponse);
-
         customerProducer.sendMessage(customerUpdatedEvent);
-        System.out.println(customerUpdatedEvent);
-
+        //System.out.println(customerUpdatedEvent);
         return updatedIndividualCustomerResponse;
     }
 
     @Override
     public GetIndividualCustomerResponse getById(String id) {
-        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         Customer customer = customerService.getById(id);
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
+        individualCustomerBusinessRules.checkIfIndividualCustomerExists(customer.getId());
+        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
         return IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponse(individualCustomer);
     }
 
