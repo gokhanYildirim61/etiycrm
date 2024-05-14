@@ -20,7 +20,7 @@ public class ProductOfferController {
     private ProductOfferService productOfferService;
 
     @PostMapping
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "add")
     public CreatedProductOfferResponse add(@Valid @RequestBody CreateProductOfferRequest createProductOfferRequest){
         return productOfferService.add(createProductOfferRequest);

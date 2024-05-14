@@ -7,8 +7,10 @@ import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.CreatedP
 import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.DeletedProductOfferResponse;
 import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.GetProductOfferResponse;
 import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.UpdatedProductOfferResponse;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+@Mapper
 public interface ProductOfferMapper {
     ProductOfferMapper INSTANCE = Mappers.getMapper(ProductOfferMapper.class);
 

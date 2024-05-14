@@ -41,6 +41,7 @@ public class ProductOfferServiceImpl implements ProductOfferService {
     @Override
     public GetProductOfferResponse getById(String id) {
         ProductOffer productOffer = productOfferRepository.findById(id).get();
+        //TODO(Business Rules - checkDeletedDate)
         GetProductOfferResponse response = ProductOfferMapper.INSTANCE.getProductOfferResponseFromProductOffer(productOffer);
         return response;
     }
