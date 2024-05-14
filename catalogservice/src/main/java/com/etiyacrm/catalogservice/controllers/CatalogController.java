@@ -1,9 +1,9 @@
 package com.etiyacrm.catalogservice.controllers;
 
 import com.etiyacrm.catalogservice.services.abstracts.CatalogService;
-import com.etiyacrm.catalogservice.services.dtos.requests.catalogRequests.CreateCatalogRequest;
-import com.etiyacrm.catalogservice.services.dtos.requests.catalogRequests.UpdateCatalogRequest;
-import com.etiyacrm.catalogservice.services.dtos.responses.catalogResponses.*;
+import com.etiyacrm.catalogservice.services.dtos.requests.catalog.CreateCatalogRequest;
+import com.etiyacrm.catalogservice.services.dtos.requests.catalog.UpdateCatalogRequest;
+import com.etiyacrm.catalogservice.services.dtos.responses.catalog.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

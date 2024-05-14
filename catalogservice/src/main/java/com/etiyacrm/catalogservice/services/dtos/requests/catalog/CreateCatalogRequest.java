@@ -1,4 +1,4 @@
-package com.etiyacrm.catalogservice.services.dtos.requests.catalogRequests;
+package com.etiyacrm.catalogservice.services.dtos.requests.catalog;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.etiyacrm.catalogservice.services.dtos.responses.catalogResponses;
+package com.etiyacrm.catalogservice.services.dtos.responses.campaign;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeletedCatalogResponse {
+public class DeletedCampaignResponse {
     private String id;
     private LocalDateTime deletedDate;
 }
