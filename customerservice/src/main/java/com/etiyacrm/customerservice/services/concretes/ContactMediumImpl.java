@@ -3,8 +3,8 @@ package com.etiyacrm.customerservice.services.concretes;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
-import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.CreatedContactMediumResponse;
@@ -22,12 +22,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ContactMediumImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
-    private CustomerRepository customerRepository; // Bu repo burada kullanılmalı mı?
     private ContactMediumRules contactMediumRules;
+    private CustomerService customerService;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
-        Customer customer = customerRepository.findById(createContactMediumRequest.getCustomerId()).get();
+        Customer customer = customerService.getById(createContactMediumRequest.getCustomerId());
+        //contactMediumRules.checkCustomerDeletedDate(customer.getDeletedDate());
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
         contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
@@ -39,7 +40,7 @@ public class ContactMediumImpl implements ContactMediumService {
     @Override
     public UpdateContactMediumResponse update(UpdateContactMediumRequest updateContactMediumRequest) {
         ContactMedium contactMedium = contactMediumRepository.findById(updateContactMediumRequest.getId()).get();
-        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        //contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
         ContactMedium updatedContactMedium = ContactMediumMapper.INSTANCE.contactMediumFromUpdatedContactMediumRequest(updateContactMediumRequest);
         System.out.println(contactMedium.getCustomer() == null);
         updatedContactMedium.setCustomer(contactMedium.getCustomer());
@@ -52,7 +53,7 @@ public class ContactMediumImpl implements ContactMediumService {
     @Override
     public GetContactMediumResponse getById(String id) {
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
-        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        //contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
         GetContactMediumResponse response = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
         response.setCustomerId(contactMedium.getCustomer().getId());
         return response;
@@ -61,7 +62,7 @@ public class ContactMediumImpl implements ContactMediumService {
     @Override
     public DeletedContactMediumResponse softDelete(String id) {
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
-        contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
+        //contactMediumRules.checkDeletedDate(contactMedium.getDeletedDate());
         contactMedium.setDeletedDate(LocalDateTime.now());
         contactMediumRepository.save(contactMedium);
         return ContactMediumMapper.INSTANCE.deleteContactMediumResponseFromContactMedium(contactMedium);

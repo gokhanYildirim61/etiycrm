@@ -13,4 +13,10 @@ public class ContactMediumRules {
             throw new BusinessException("The Contact Medium not found");
         }
     }
+
+    public void checkCustomerDeletedDate(LocalDateTime localDateTime) {
+        if (localDateTime != null){
+            throw new BusinessException("The Customer not found");
+        }
+    }
 }
