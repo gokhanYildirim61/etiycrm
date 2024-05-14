@@ -9,9 +9,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // Tüm kökenlere izin ver
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*") // Tüm başlıklara izin ver
-                .exposedHeaders("Access-Control-Allow-Origin"); // Bu başlığın istemci tarafından okunabilmesini sağlar
+                .allowedHeaders("Authorization", "Content-Type");
+
     }
 }
