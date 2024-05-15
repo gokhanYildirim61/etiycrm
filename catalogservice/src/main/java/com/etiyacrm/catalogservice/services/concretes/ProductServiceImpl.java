@@ -1,7 +1,11 @@
 package com.etiyacrm.catalogservice.services.concretes;
 
+import com.etiyacrm.catalogservice.entities.Catalog;
 import com.etiyacrm.catalogservice.entities.Product;
 import com.etiyacrm.catalogservice.repositories.ProductRepository;
+import com.etiyacrm.catalogservice.services.abstracts.CampaignService;
+import com.etiyacrm.catalogservice.services.abstracts.CatalogService;
+import com.etiyacrm.catalogservice.services.abstracts.ProductOfferService;
 import com.etiyacrm.catalogservice.services.abstracts.ProductService;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.CreateProductRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.UpdateProductRequest;
@@ -18,6 +22,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ProductServiceImpl  implements ProductService {
     private ProductRepository productRepository;
+    private CampaignService campaignService;
+    private ProductOfferService campaignId;
+    private CatalogService catalogService;
 
     @Override
     public CreatedProductResponse add(CreateProductRequest createProductRequest) {

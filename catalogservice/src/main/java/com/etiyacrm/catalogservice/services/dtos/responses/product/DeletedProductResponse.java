@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DeletedProductResponse {
-
     private String id;
     private String name;
+    private String description;
+    private String productOfferId;
+    private String catalogId;
+    private String campaignId;
 
 }
