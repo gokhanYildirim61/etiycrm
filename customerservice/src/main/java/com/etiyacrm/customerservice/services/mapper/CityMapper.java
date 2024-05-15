@@ -20,7 +20,7 @@ public interface CityMapper {
     GetAllCityResponse getAllCityResponseFromCity(City city);
     City cityFromCreateCityRequest(CreateCityRequest createCityRequest);
     CreatedCityResponse createdCityResponseFromCity(City city);
-
+//
     City cityFromCityUpdatedCityRequest(UpdateCityRequest updateCityRequest);
     UpdatedCityResponse updateCityResponseFromCity(City city);
 
