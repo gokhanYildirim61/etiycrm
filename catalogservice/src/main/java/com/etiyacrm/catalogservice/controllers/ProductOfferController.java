@@ -29,7 +29,7 @@ public class ProductOfferController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "update")
-    public UpdatedProductOfferResponse update(@RequestBody UpdateProductOfferRequest updateProductOfferRequest){
+    public UpdatedProductOfferResponse update(@Valid @RequestBody UpdateProductOfferRequest updateProductOfferRequest){
         return productOfferService.update(updateProductOfferRequest);
     }
 

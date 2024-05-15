@@ -31,7 +31,6 @@ public class ProductOfferServiceImpl implements ProductOfferService {
     @Override
     public UpdatedProductOfferResponse update(UpdateProductOfferRequest updateProductOfferRequest) {
         // ProductOffer productOffer = productOfferRepository.findById(updateProductOfferRequest.getId()).get();
-        // TODO(ProductOfferBusinessRules - checkDeletedDate)
         ProductOffer updatedProductOffer = ProductOfferMapper.INSTANCE.productOfferFromUpdateProductOfferRequest(updateProductOfferRequest);
         updatedProductOffer = productOfferRepository.save(updatedProductOffer);
         UpdatedProductOfferResponse response = ProductOfferMapper.INSTANCE.updatedProductOfferResponseFromProductOffer(updatedProductOffer);
@@ -41,7 +40,6 @@ public class ProductOfferServiceImpl implements ProductOfferService {
     @Override
     public GetProductOfferResponse getById(String id) {
         ProductOffer productOffer = productOfferRepository.findById(id).get();
-        //TODO(Business Rules - checkDeletedDate)
         GetProductOfferResponse response = ProductOfferMapper.INSTANCE.getProductOfferResponseFromProductOffer(productOffer);
         return response;
     }
@@ -49,10 +47,8 @@ public class ProductOfferServiceImpl implements ProductOfferService {
     @Override
     public DeletedProductOfferResponse softDelete(String id) {
         ProductOffer productOffer = productOfferRepository.findById(id).get();
-        // TODO(ProductOfferBusinessRules - checkDeletedDate)
         productOffer.setDeletedDate(LocalDateTime.now());
         productOfferRepository.save(productOffer);
-
         DeletedProductOfferResponse response = ProductOfferMapper.INSTANCE.deleteProductOfferResponseFromProductOffer(productOffer);
         return response;
     }
