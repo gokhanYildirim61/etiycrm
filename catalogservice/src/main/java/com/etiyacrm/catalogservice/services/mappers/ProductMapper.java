@@ -40,7 +40,9 @@ public interface ProductMapper {
     @Mapping(source = "catalogId", target = "catalog.id")
     @Mapping(source = "campaignId", target = "campaign.id")
     Product productFromProductUpdatedProductRequest(UpdateProductRequest updateProductRequest);
-
+    @Mapping(source = "product.productOffer.id", target = "productOfferId")
+    @Mapping(source = "product.catalog.id", target = "catalogId")
+    @Mapping(source = "product.campaign.id", target = "campaignId")
     UpdatedProductResponse updateProductResponseFromProduct(Product product);
 
 
@@ -48,6 +50,7 @@ public interface ProductMapper {
     @Mapping(source = "product.catalog.id", target = "catalogId")
     @Mapping(source = "product.campaign.id", target = "campaignId")
     DeletedProductResponse deleteProductResponseFromProduct(Product product);
+
 
     @Mapping(source = "pageProduct.content", target = "items")
     GetListResponse<GetAllProductResponse> pageInfoResponseFromPageProduct(Page<Product> pageProduct);

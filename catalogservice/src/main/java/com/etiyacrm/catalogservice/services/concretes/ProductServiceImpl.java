@@ -14,6 +14,9 @@ import com.etiyacrm.catalogservice.services.mappers.ProductMapper;
 import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.common.business.responses.GetListResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,9 +25,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ProductServiceImpl  implements ProductService {
     private ProductRepository productRepository;
-    private CampaignService campaignService;
-    private ProductOfferService campaignId;
-    private CatalogService catalogService;
+
 
     @Override
     public CreatedProductResponse add(CreateProductRequest createProductRequest) {
@@ -38,11 +39,11 @@ public class ProductServiceImpl  implements ProductService {
 
     @Override
     public UpdatedProductResponse update(UpdateProductRequest updateProductRequest) {
-        Product product =productRepository.findById(updateProductRequest.getId()).get();
+
         Product updatedProduct= ProductMapper.INSTANCE.productFromProductUpdatedProductRequest(updateProductRequest);
         updatedProduct=productRepository.save(updatedProduct);
-
-        return ProductMapper.INSTANCE.updateProductResponseFromProduct(updatedProduct);
+        UpdatedProductResponse updatedProductResponse=ProductMapper.INSTANCE.updateProductResponseFromProduct(updatedProduct);
+        return updatedProductResponse;
     }
 
     @Override
@@ -54,7 +55,14 @@ public class ProductServiceImpl  implements ProductService {
 
     @Override
     public GetListResponse<GetAllProductResponse> getAllWithPaging(PageInfo pageInfo) {
-        return null;
+        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+        Page<Product> response =productRepository.findAll(pageable);
+
+      GetListResponse<GetAllProductResponse> responses = ProductMapper.INSTANCE.pageInfoResponseFromPageProduct(response);
+        responses.setHasNext(response.hasNext());
+        responses.setHasPrevious(response.hasPrevious());
+        responses.setPage(pageInfo.getPage());
+        return responses;
     }
 
     @Override
