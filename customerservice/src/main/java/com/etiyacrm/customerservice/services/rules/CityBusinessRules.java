@@ -31,12 +31,6 @@ public class CityBusinessRules {
         }
     }
 
-    public void validateCityName(String name){
-        if(name.matches(".*\\d.*")){
-            throw new BusinessException("City name must not contain digits");
-        }
-    }
-
     public void checkIfIdNotExists(String id){
         Optional<City> city=cityRepository.findById(id);
         if (!city.isPresent()){
