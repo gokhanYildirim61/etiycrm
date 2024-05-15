@@ -12,19 +12,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class CreateIndividualCustomerRequest {
-    @NotBlank(message = "IndividualCustomer name cannot be empty")
+    @NotBlank(message = "Individual Customer first name is required!")
     @Size(min = 2,max = 30)
     private String firstName;
     private String middleName;
-    @NotBlank
+    @NotBlank(message = "Individual Customer last name is required!")
     private String lastName;
-    @NotBlank
+    @NotBlank(message = "Individual Customer gender is required!")
     private String gender;
     private String motherName;
     private String  fatherName;
-    @NotBlank
+    @NotBlank(message = "Individual Customer Nationality ID is required!")
     private String nationalityId;
-    @NotNull
+    @NotNull(message = "Individual Customer Birthdate is required!")
     private LocalDate birthDate;
 
 

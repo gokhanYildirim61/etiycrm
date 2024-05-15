@@ -1,6 +1,6 @@
 package com.etiyacrm.customerservice.services.dtos.requests.contactMedium;
 
-import com.etiyacrm.customerservice.entities.Customer;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdateContactMediumRequest {
+    @NotBlank(message = "Contact Medium ID is required!")
     private String id;
+    @NotBlank(message = "Mobile Phone is required!")
     private String mobilePhone;
+    @NotBlank(message = "Home Phone is required!")
     private String homePhone;
+    @NotBlank(message = "Email is required!")
     private String email;
+    @NotBlank(message = "Fax is required!")
     private String fax;
 }

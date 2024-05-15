@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateCityRequest {
-    @NotBlank
-    @Size(min = 3, max = 20)
+    @NotBlank(message = "City name is required!")
+    @Size(min = 3, max = 20, message = "City name size must be between 3 and 20 characters.")
     private String name;
 }
