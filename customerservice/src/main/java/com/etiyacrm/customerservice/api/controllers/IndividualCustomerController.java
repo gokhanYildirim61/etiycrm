@@ -2,6 +2,7 @@ package com.etiyacrm.customerservice.api.controllers;
 
 import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CheckRealPersonRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
@@ -51,6 +52,19 @@ public class IndividualCustomerController {
         return individualCustomerService.getAll(pageInfo);
    }
 
+    @GetMapping("/checkNationalityId/{nationalityId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "checkNationalityId")
+    public boolean checkIfNationalityIdExists(@PathVariable String nationalityId) {
+        return individualCustomerService.checkIfNationalityIdExists(nationalityId);
+    }
+
+    @PostMapping("/checkRealPerson")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "checkRealPerson")
+    public boolean checkIfRealPerson(@Valid @RequestBody CheckRealPersonRequest checkRealPersonRequest) throws Exception {
+        return individualCustomerService.checkIfRealPerson(checkRealPersonRequest);
+    }
 
 
     @DeleteMapping("/{id}")

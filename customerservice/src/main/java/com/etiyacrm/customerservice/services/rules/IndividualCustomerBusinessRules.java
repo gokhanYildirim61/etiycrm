@@ -6,6 +6,7 @@ import com.etiyacrm.common.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CheckRealPersonRequest;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,10 @@ public class IndividualCustomerBusinessRules {
         if (!individualCustomer.isPresent()){
             throw new BusinessException("The individual customer not found");
         }
+    }
+
+    public boolean checkIfRealPerson(CheckRealPersonRequest checkRealPersonRequest) throws Exception {
+        return customerCheckService.checkIfRealPerson(checkRealPersonRequest.getNationalityId(), (checkRealPersonRequest.getFirstName() + " " + checkRealPersonRequest.getMiddleName()), checkRealPersonRequest.getLastName(), checkRealPersonRequest.getBirthYear());
     }
 
     public void checkIfNationalIdExists(String nationalityId, String firstName, String middleName, String lastName, int birthDate) throws Exception {

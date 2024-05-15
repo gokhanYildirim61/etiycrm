@@ -9,6 +9,7 @@ import com.etiyacrm.customerservice.kafka.producer.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CheckRealPersonRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
@@ -94,6 +95,16 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
                 })
                 .collect(Collectors.toList());
         return resultList;
+    }
+
+    @Override
+    public boolean checkIfNationalityIdExists(String nationalityId) {
+        return individualCustomerRepository.existsByNationalityId(nationalityId);
+    }
+
+    @Override
+    public boolean checkIfRealPerson(CheckRealPersonRequest checkRealPersonRequest) throws Exception {
+        return individualCustomerBusinessRules.checkIfRealPerson(checkRealPersonRequest);
     }
 
 /*public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo) {
