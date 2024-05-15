@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("catalogservice/api/v1/campaign")
+@RequestMapping("catalogservice/api/v1/campaigns")
 @AllArgsConstructor
 public class CampaignController {
     private CampaignService campaignService;
