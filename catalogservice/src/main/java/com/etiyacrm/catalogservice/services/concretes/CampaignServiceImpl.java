@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CampaignServiceImpl implements CampaignService {
     private CampaignRepository campaignRepository;
-    private CampaignService campaignService;
 
     @Override
     public CreatedCampaignResponse add(CreateCampaignRequest createCampaignRequest) {
@@ -47,7 +46,7 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public GetListResponse<GetAllCampaignResponse> getAllWithPaging(PageInfo pageInfo) {
-        return campaignService.getAllWithPaging(pageInfo);
+        return null;
     }
 
     @Override

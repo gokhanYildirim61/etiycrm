@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CatalogService {
     CreatedCatalogResponse add(CreateCatalogRequest createCatalogRequest);
-    UpdatedCatalogResponse update(UpdateCatalogRequest updateCatalogRequest, String id);
+    UpdatedCatalogResponse update(UpdateCatalogRequest updateCatalogRequest);
     List<GetAllCatalogResponse> getAll();
     GetCatalogResponse getById(String id);
     DeletedCatalogResponse delete(String id);
