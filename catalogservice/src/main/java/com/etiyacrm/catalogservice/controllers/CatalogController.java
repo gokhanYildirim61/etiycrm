@@ -4,6 +4,8 @@ import com.etiyacrm.catalogservice.services.abstracts.CatalogService;
 import com.etiyacrm.catalogservice.services.dtos.requests.catalog.CreateCatalogRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.catalog.UpdateCatalogRequest;
 import com.etiyacrm.catalogservice.services.dtos.responses.catalog.*;
+import com.etiyacrm.common.business.paging.PageInfo;
+import com.etiyacrm.common.business.responses.GetListResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -33,8 +35,8 @@ public class CatalogController {
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getList")
-    public List<GetAllCatalogResponse> getAll(){
-        return catalogService.getAll();
+    public GetListResponse<GetAllCatalogResponse> getAllWithPaging(PageInfo pageInfo) {
+        return catalogService.getAllWithPaging(pageInfo);
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
