@@ -35,7 +35,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
-        cityBusinessRules.validateCityName(createCityRequest.getName());
+        //cityBusinessRules.validateCityName(createCityRequest.getName());
         cityBusinessRules.cityNameCannotBeDuplicatedWhenInserted(createCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
