@@ -55,13 +55,13 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public GetCityResponse getById(String id) {
+        cityBusinessRules.checkIfIdNotExists(id);
         City city=cityRepository.findById(id).get();
-        cityBusinessRules.checkDeletedDate(city.getDeletedDate());
         return CityMapper.INSTANCE.getCityResponse(city);
     }
 
     @Override
-    public City getById2(String id) {
+    public City getByCityId(String id) {
 
         cityBusinessRules.checkIfIdNotExists(id);
         return cityRepository.findById(id).get();

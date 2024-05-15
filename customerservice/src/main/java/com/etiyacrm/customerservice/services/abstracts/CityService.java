@@ -18,7 +18,7 @@ public interface CityService {
 
     GetCityResponse getById(String id);
 
-    City getById2(String id);
+    City getByCityId(String id);
 
     GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo);
 
