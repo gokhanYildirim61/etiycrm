@@ -19,6 +19,9 @@ public interface AddressMapper {
     @Mapping(source = "address.customer.id", target = "customerId")
     GetAddressResponse getAddressResponse(Address address);
     GetAllAddressResponse getAllAddressResponseFromAddress(Address address);
+
+    @Mapping(source = "cityId" , target = "city.id")
+    @Mapping(source = "customerId" , target = "customer.id")
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
 
     @Mapping(source = "address.customer.id", target = "customerId")
@@ -29,9 +32,12 @@ public interface AddressMapper {
     @Mapping(source = "customerId" , target = "customer.id")
     Address addressFromAddressUpdatedAddressRequest(UpdateAddressRequest updateAddressRequest);
 
-
+    @Mapping(source = "address.customer.id", target = "customerId")
+    @Mapping(source = "address.city.id", target = "cityId")
     UpdatedAddressResponse updateAddressResponseFromAddress(Address address);
 
+    @Mapping(source = "address.customer.id", target = "customerId")
+    @Mapping(source = "address.city.id", target = "cityId")
     DeletedAddressResponse deleteAddressResponseFromAddress(Address address);
 
     @Mapping(source = "pageAddress.content", target = "items")

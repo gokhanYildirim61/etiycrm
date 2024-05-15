@@ -34,15 +34,7 @@ public class AddressServiceImpl implements AddressService {
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
         Address address= AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         Address createdAddress= addressRepository.save(address);
-        Customer customer=customerService.getById(createAddressRequest.getCustomerId());
-         createdAddress.setCustomer(customer);
-
-         City city=cityService.getByCityId(createAddressRequest.getCityId());
-        createdAddress.setCity(city);
-        addressRepository.save(createdAddress);
         CreatedAddressResponse createdAddressResponse=AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
-//        createdAddressResponse.setCustomerId(createdAddress.getCustomer().getId());
-//        createdAddressResponse.setCityId(createdAddress.getCity().getId());
         return createdAddressResponse;
 
     }
@@ -51,11 +43,8 @@ public class AddressServiceImpl implements AddressService {
     public UpdatedAddressResponse update(UpdateAddressRequest updateAddressRequest) {
         Address address = addressRepository.findById(updateAddressRequest.getId()).get();
         Address updatedAddress= AddressMapper.INSTANCE.addressFromAddressUpdatedAddressRequest(updateAddressRequest);
-        updatedAddress.setCustomer(address.getCustomer());
         updatedAddress= addressRepository.save(updatedAddress);
         UpdatedAddressResponse updatedAddressResponse=AddressMapper.INSTANCE.updateAddressResponseFromAddress(updatedAddress);
-        updatedAddressResponse.setCustomerId(updatedAddress.getCustomer().getId());
-        updatedAddressResponse.setCityId(updatedAddress.getCity().getId());
         return updatedAddressResponse;
 
     }
@@ -88,8 +77,6 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.save(address);
 
         DeletedAddressResponse deletedAddressResponse=AddressMapper.INSTANCE.deleteAddressResponseFromAddress(address);
-        deletedAddressResponse.setCityId(address.getCity().getId());
-        deletedAddressResponse.setCustomerId(address.getCustomer().getId());
         return deletedAddressResponse;
 
     }
