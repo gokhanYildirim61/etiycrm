@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreateProductOfferRequest {
-    @NotBlank(message = "Product Offer name is required to update")
+    @NotBlank(message = "ProductOffer name cannot be empty")
     private String name;
+    @NotBlank(message = "ProductOffer description cannot be empty")
     private String description;
-    @Min(value = 0, message = "The price cannot be less than 0")
+    @Min(value = 0, message = "ProductOffer price cannot be less than 0")
     private double price;
 }
