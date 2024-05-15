@@ -27,13 +27,12 @@ public class CatalogController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
-    public UpdatedCatalogResponse update(@Valid @RequestBody UpdateCatalogRequest updateCatalogRequest,
-                                         @PathVariable String id){
-        return catalogService.update(updateCatalogRequest, id);
+    public UpdatedCatalogResponse update(@Valid @RequestBody UpdateCatalogRequest updateCatalogRequest){
+        return catalogService.update(updateCatalogRequest);
     }
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "getAll")
+    @Operation(summary = "getList")
     public List<GetAllCatalogResponse> getAll(){
         return catalogService.getAll();
     }

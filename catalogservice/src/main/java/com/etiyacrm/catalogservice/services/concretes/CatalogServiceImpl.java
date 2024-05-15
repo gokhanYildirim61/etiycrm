@@ -29,9 +29,9 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public UpdatedCatalogResponse update(UpdateCatalogRequest updateCatalogRequest, String id) {
+    public UpdatedCatalogResponse update(UpdateCatalogRequest updateCatalogRequest) {
         Catalog catalog = CatalogMapper.INSTANCE.catalogFromUpdateCatalogRequest(updateCatalogRequest);
-        catalog.setId(id);
+        //catalog.setId(updateCatalogRequest.getId());
         catalog.setUpdatedDate(LocalDateTime.now());
         Catalog updatedCatalog = catalogRepository.save(catalog);
 
