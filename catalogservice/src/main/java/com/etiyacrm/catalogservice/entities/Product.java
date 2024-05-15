@@ -22,15 +22,18 @@ public class Product extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    //@ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "product_offer_id")
     private ProductOffer productOffer;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    //@ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "catalog_id")
     private Catalog catalog;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    //@ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne()
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 }
