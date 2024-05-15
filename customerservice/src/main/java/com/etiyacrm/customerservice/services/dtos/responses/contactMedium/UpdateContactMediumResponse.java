@@ -1,6 +1,5 @@
 package com.etiyacrm.customerservice.services.dtos.responses.contactMedium;
 
-import com.etiyacrm.customerservice.entities.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

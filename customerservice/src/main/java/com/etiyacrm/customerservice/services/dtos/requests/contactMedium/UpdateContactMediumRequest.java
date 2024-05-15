@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 public class UpdateContactMediumRequest {
     @NotBlank(message = "Contact Medium ID is required!")
     private String id;
+    @NotBlank(message = "Customer ID is required!")
+    private String customerId;
     @NotBlank(message = "Mobile Phone is required!")
     private String mobilePhone;
     @NotBlank(message = "Home Phone is required!")
