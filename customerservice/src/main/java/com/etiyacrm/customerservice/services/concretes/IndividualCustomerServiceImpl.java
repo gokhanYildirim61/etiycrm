@@ -40,20 +40,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 //        TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
 //        individualCustomerBusinessRules.checkIfNationalIdExists(
 //                createIndividualCustomerRequest.getNationalityId(),
-//                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
-
-
+//                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getMiddleName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
-
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse =  IndividualCustomerMapper.INSTANCE.createIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
 
         CustomerCreatedEvent customerCreatedEvent = IndividualCustomerMapper.INSTANCE.customerCreatedEventFromCreatedIndividualCustomerResponse(createdIndividualCustomerResponse);
-
         customerProducer.sendMessage(customerCreatedEvent);
-        System.out.println(customerCreatedEvent);
-
         return createdIndividualCustomerResponse;
     }
 
@@ -67,7 +61,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 //                TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
 //                individualCustomerBusinessRules.checkIfNationalIdExists(
 //                        updateIndividualCustomerRequest.getNationalityId(),
-//                        updateIndividualCustomerRequest.getFirstName(), updateIndividualCustomerRequest.getLastName(), updateIndividualCustomerRequest.getBirthDate().getYear());
+//                        updateIndividualCustomerRequest.getFirstName(), updateIndividualCustomerRequest.getMiddleName(), updateIndividualCustomerRequest.getLastName(), updateIndividualCustomerRequest.getBirthDate().getYear());
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
         updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);

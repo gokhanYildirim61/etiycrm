@@ -44,9 +44,9 @@ public class IndividualCustomerBusinessRules {
         }
     }
 
-    public void checkIfNationalIdExists(String nationalityId, String firstName, String lastName, int birthDate) throws Exception {
+    public void checkIfNationalIdExists(String nationalityId, String firstName, String middleName, String lastName, int birthDate) throws Exception {
 
-        if(!customerCheckService.checkIfRealPerson(nationalityId, firstName, lastName, birthDate)){
+        if(!customerCheckService.checkIfRealPerson(nationalityId, (firstName + " " + middleName), lastName, birthDate)){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
         }
 
