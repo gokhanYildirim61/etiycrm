@@ -18,6 +18,9 @@ public interface AddressMapper {
     @Mapping(source = "address.city.id", target = "cityId")
     @Mapping(source = "address.customer.id", target = "customerId")
     GetAddressResponse getAddressResponse(Address address);
+
+    @Mapping(source = "address.city.id", target = "cityId")
+    @Mapping(source = "address.customer.id", target = "customerId")
     GetAllAddressResponse getAllAddressResponseFromAddress(Address address);
 
     @Mapping(source = "cityId" , target = "city.id")
