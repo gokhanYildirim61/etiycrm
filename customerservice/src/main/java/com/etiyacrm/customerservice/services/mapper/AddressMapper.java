@@ -14,11 +14,15 @@ import org.springframework.data.domain.Page;
 public interface AddressMapper {
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
+
+    @Mapping(source = "address.city.id", target = "cityId")
+    @Mapping(source = "address.customer.id", target = "customerId")
     GetAddressResponse getAddressResponse(Address address);
     GetAllAddressResponse getAllAddressResponseFromAddress(Address address);
     Address addressFromCreateAddressRequest(CreateAddressRequest createAddressRequest);
-    @Mapping(source = "cityId" , target = "city.id")
-    @Mapping(source = "customerId" , target = "customer.id")
+
+    @Mapping(source = "address.customer.id", target = "customerId")
+    @Mapping(source = "address.city.id", target = "cityId")
     CreatedAddressResponse createdAddressResponseFromAddress(Address address);
 
     @Mapping(source = "cityId" , target = "city.id")

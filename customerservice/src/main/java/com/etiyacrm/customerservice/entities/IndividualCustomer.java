@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Table(name="individual_customers")
 @Data
+@Where(clause = "deleted_date IS NULL")
 @PrimaryKeyJoinColumn(name = "customer_id")
 public class IndividualCustomer extends Customer {
 
