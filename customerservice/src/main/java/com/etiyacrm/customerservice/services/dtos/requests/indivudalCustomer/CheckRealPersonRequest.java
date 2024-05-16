@@ -18,5 +18,5 @@ public class CheckRealPersonRequest {
     @NotBlank(message = "Nationality ID is required!")
     private String nationalityId;
     @NotNull(message = "Birth year is required!")
-    private int birthYear;
+    private String birthYear;
 }

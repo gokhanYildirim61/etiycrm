@@ -46,7 +46,7 @@ public class IndividualCustomerBusinessRules {
     }
 
     public boolean checkIfRealPerson(CheckRealPersonRequest checkRealPersonRequest) throws Exception {
-        return customerCheckService.checkIfRealPerson(checkRealPersonRequest.getNationalityId(), (checkRealPersonRequest.getFirstName() + " " + checkRealPersonRequest.getMiddleName()), checkRealPersonRequest.getLastName(), checkRealPersonRequest.getBirthYear());
+        return customerCheckService.checkIfRealPerson(checkRealPersonRequest.getNationalityId(), (checkRealPersonRequest.getFirstName() + " " + checkRealPersonRequest.getMiddleName()), checkRealPersonRequest.getLastName(), Integer.parseInt(checkRealPersonRequest.getBirthYear()));
     }
 
     public void checkIfNationalIdExists(String nationalityId, String firstName, String middleName, String lastName, int birthDate) throws Exception {
