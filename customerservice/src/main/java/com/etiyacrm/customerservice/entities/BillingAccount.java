@@ -24,29 +24,23 @@ public class BillingAccount extends BaseEntity {
     @Column(name="status")
     private boolean status;
 
-    @Column(name="account_number")
-    private String accountNumber;
+    @Column(name="number")
+    private String number;
 
     @Column(name="name")
     private String name;
 
-    @Column(name="description")
-    private String description;
+//    @Column(name="description")
+//    private String description;
 
     @Column(name="type")
     private String type;
-
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-
-
-
 }

@@ -1,7 +1,7 @@
 package com.etiyacrm.customerservice.services.dtos.requests.billingAccount;
 
-import com.etiyacrm.customerservice.entities.Address;
-import com.etiyacrm.customerservice.entities.Customer;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,12 +10,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdateBillingAccountRequest {
+    @NotBlank(message = "Account ID is required!")
     private String id;
+    @NotNull(message = "Account Status is required!")
     private boolean status;
-    private String accountNumber;
-    private String name;
-    private String description;
+    @NotBlank(message = "Account Number is required!")
+    private String number;
+    @NotBlank(message = "Account Name is required!")
+    private String name; //+
+    //    private String description; // Adres tablosundaki description sütunu zaten buraya verilecek. Input olarak almaya gerek yok.
+    @NotBlank(message = "Account Type is required!")
     private String type;
+    @NotBlank(message = "Customer ID is required!")
     private String customerId;
-    private String addressId;
+    @NotBlank(message = "Address ID is required!")
+    private String addressId; //+
 }
