@@ -29,4 +29,7 @@ public class Customer extends BaseEntity {
     @OneToOne(mappedBy = "customer")
     private ContactMedium contactMedium;
 
+    @OneToMany(mappedBy = "customer")
+    private List<BillingAccount> billingAccount;
+
 }
