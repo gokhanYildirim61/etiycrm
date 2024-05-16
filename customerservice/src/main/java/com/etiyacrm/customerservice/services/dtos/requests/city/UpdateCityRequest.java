@@ -15,6 +15,6 @@ public class UpdateCityRequest {
     private String id;
     @NotBlank(message = "City name is required!")
     @Size(min = 3, max = 20, message = "City name size must be between 3 and 20 characters.")
-    @Pattern(regexp = ".*\\d.*", message = "City name must not contain digits!")
+    @Pattern(regexp = "^[çÇğĞıİöÖşŞüÜa-zA-Z]+$", message = "City name must not contain digits!")
     private String name;
 }
