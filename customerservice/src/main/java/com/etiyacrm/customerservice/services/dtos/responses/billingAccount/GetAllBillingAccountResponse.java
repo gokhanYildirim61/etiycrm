@@ -13,7 +13,7 @@ public class GetAllBillingAccountResponse {
     private boolean status;
     private String number;
     private String name;
-//    private String description;
+    private String description;
     private String type;
     private String customerId;
     private String addressId;

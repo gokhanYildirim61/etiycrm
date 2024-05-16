@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UpdatedBillingAccountResponse {
-
     private String id;
     private boolean status;
     private String number;
     private String name;
-//    private String description;
+    private String description;
     private String type;
     private String customerId;
     private String addressId;

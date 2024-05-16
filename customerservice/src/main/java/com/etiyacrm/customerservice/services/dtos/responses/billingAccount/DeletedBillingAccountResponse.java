@@ -8,7 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DeletedBillingAccountResponse {
-
     private String id;
-
 }

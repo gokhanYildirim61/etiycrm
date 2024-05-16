@@ -17,8 +17,9 @@ public class UpdateBillingAccountRequest {
     @NotBlank(message = "Account Number is required!")
     private String number;
     @NotBlank(message = "Account Name is required!")
-    private String name; //+
-    //    private String description; // Adres tablosundaki description sütunu zaten buraya verilecek. Input olarak almaya gerek yok.
+    private String name;
+    @NotBlank(message = "Account Description is required!")
+    private String description;
     @NotBlank(message = "Account Type is required!")
     private String type;
     @NotBlank(message = "Customer ID is required!")
