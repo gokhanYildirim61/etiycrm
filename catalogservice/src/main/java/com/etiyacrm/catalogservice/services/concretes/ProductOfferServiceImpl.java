@@ -30,7 +30,6 @@ public class ProductOfferServiceImpl implements ProductOfferService {
 
     @Override
     public UpdatedProductOfferResponse update(UpdateProductOfferRequest updateProductOfferRequest) {
-        // ProductOffer productOffer = productOfferRepository.findById(updateProductOfferRequest.getId()).get();
         ProductOffer updatedProductOffer = ProductOfferMapper.INSTANCE.productOfferFromUpdateProductOfferRequest(updateProductOfferRequest);
         updatedProductOffer = productOfferRepository.save(updatedProductOffer);
         UpdatedProductOfferResponse response = ProductOfferMapper.INSTANCE.updatedProductOfferResponseFromProductOffer(updatedProductOffer);

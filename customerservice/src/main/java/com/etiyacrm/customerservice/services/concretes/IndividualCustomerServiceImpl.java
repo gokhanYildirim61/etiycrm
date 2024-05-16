@@ -52,7 +52,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return createdIndividualCustomerResponse;
     }
 
-        //Page<IndividualCustomer> findByDeletedDateIsNull(Pageable pageable); kontrol için aldık
+
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception {
         //IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
@@ -69,7 +69,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse=IndividualCustomerMapper.INSTANCE.updateIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
         CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromUpdatedIndividualCustomerResponse(updatedIndividualCustomerResponse);
         customerProducer.sendMessage(customerUpdatedEvent);
-        //System.out.println(customerUpdatedEvent);
+
         return updatedIndividualCustomerResponse;
     }
 
@@ -107,13 +107,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return individualCustomerBusinessRules.checkIfRealPerson(checkRealPersonRequest);
     }
 
-/*public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
-        response.map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer)).getContent();
-
-    }*/
-
 
     @Override
     public DeletedIndividualCustomerResponse softDelete(String id) {
@@ -128,8 +121,4 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         customerProducer.sendMessage(customerUpdatedEvent);
         return IndividualCustomerMapper.INSTANCE.deleteCustomerResponseFromCustomer(customer);
     }
-
-
-
-
 }

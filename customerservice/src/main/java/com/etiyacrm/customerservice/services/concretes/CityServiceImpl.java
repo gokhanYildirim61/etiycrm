@@ -39,8 +39,6 @@ public class CityServiceImpl implements CityService {
         cityBusinessRules.cityNameCannotBeDuplicatedWhenInserted(createCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
-//        CreatedCityResponse response = CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
-//        return response;
         return CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
     }
 

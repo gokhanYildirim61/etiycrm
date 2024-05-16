@@ -27,8 +27,6 @@ import java.time.LocalDateTime;
 public class AddressServiceImpl implements AddressService {
     private AddressRepository addressRepository;
     private AddressBusinessRules addressBusinessRules;
-    private CityService cityService;
-    private CustomerService customerService;
 
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
