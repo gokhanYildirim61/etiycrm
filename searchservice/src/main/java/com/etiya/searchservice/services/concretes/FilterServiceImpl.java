@@ -76,9 +76,9 @@ public class FilterServiceImpl implements FilterService {
             criteria.add(Criteria.where("firstName").regex(Pattern.compile(normalizedFirstName, Pattern.CASE_INSENSITIVE)));
         }
         if (middleName != null) {
-            String normalizedSecondName = Normalizer.normalize(middleName, Normalizer.Form.NFD)
+            String normalizedMiddleName = Normalizer.normalize(middleName, Normalizer.Form.NFD)
                     .replaceAll("[^\\p{ASCII}]", "").toLowerCase();
-            criteria.add(Criteria.where("secondName").regex(Pattern.compile(normalizedSecondName, Pattern.CASE_INSENSITIVE)));
+            criteria.add(Criteria.where("middleName").regex(Pattern.compile(normalizedMiddleName, Pattern.CASE_INSENSITIVE)));
         }
         if (lastName != null) {
             String normalizedLastName = Normalizer.normalize(lastName, Normalizer.Form.NFD)
@@ -99,13 +99,31 @@ public class FilterServiceImpl implements FilterService {
         System.out.println("criteria: " + criteria);
 
         List<Customer> customers = mongoTemplate.find(query.with(pageable), Customer.class);
-        List<GetAllCustomer> responses = customers.stream().map(customer -> new GetAllCustomer(
-                customer.getId(),
-                customer.getFirstName().substring(0, 1).toUpperCase() + customer.getFirstName().substring(1),
-                customer.getMiddleName().substring(0, 1).toUpperCase() + customer.getMiddleName().substring(1),
-                customer.getLastName().substring(0, 1).toUpperCase() + customer.getLastName().substring(1),
-                customer.getNationalityId()
-        )).collect(Collectors.toList());
+        List<GetAllCustomer> responses = customers.stream().map(customer -> {
+            String firstNameTemp = customer.getFirstName();
+            String middleNameTemp = customer.getMiddleName();
+            String lastNameTemp = customer.getLastName();
+
+            if (!firstNameTemp.isEmpty()) {
+                firstNameTemp = firstNameTemp.substring(0, 1).toUpperCase() + firstNameTemp.substring(1);
+            }
+
+            if (!middleNameTemp.isEmpty()) {
+                middleNameTemp = middleNameTemp.substring(0, 1).toUpperCase() + middleNameTemp.substring(1);
+            }
+
+            if (!lastNameTemp.isEmpty()) {
+                lastNameTemp = lastNameTemp.substring(0, 1).toUpperCase() + lastNameTemp.substring(1);
+            }
+
+            return new GetAllCustomer(
+                    customer.getId(),
+                    firstNameTemp,
+                    middleNameTemp,
+                    lastNameTemp,
+                    customer.getNationalityId()
+            );
+        }).collect(Collectors.toList());
 
         int totalPages = (int) Math.ceil((double) total / pageable.getPageSize());
         boolean hasNext = pageable.getPageNumber() + 1 < totalPages;
