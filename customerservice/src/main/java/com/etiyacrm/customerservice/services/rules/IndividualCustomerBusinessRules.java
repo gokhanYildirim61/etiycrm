@@ -1,17 +1,18 @@
 package com.etiyacrm.customerservice.services.rules;
 
-import com.etiyacrm.customerservice.adapters.CustomerCheckService;
 import com.etiyacrm.common.business.abstracts.MessageService;
 import com.etiyacrm.common.exceptions.types.BusinessException;
+import com.etiyacrm.customerservice.adapters.CustomerCheckService;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
-import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.indivudalCustomer.CheckRealPersonRequest;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 @Service
@@ -50,10 +51,16 @@ public class IndividualCustomerBusinessRules {
     }
 
     public void checkIfNationalIdExists(String nationalityId, String firstName, String middleName, String lastName, int birthDate) throws Exception {
-
         if(!customerCheckService.checkIfRealPerson(nationalityId, (firstName + " " + middleName), lastName, birthDate)){
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
         }
+    }
 
+    public void checkIndividualCustomerAge(LocalDate birthDate) {
+        LocalDateTime now = LocalDateTime.now();
+        long yearsBetween = ChronoUnit.YEARS.between(birthDate, now);
+        if (yearsBetween < 18) {
+            throw new BusinessException("The Individual Customer's age must be older than 18!");
+        }
     }
 }

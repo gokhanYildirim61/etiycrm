@@ -36,7 +36,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
-
+        individualCustomerBusinessRules.checkIndividualCustomerAge(createIndividualCustomerRequest.getBirthDate());
 //        TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
 //        TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
 //        individualCustomerBusinessRules.checkIfNationalIdExists(
@@ -58,6 +58,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         //IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
         Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
+        individualCustomerBusinessRules.checkIndividualCustomerAge(updateIndividualCustomerRequest.getBirthDate());
 //                TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
 //                TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
 //                individualCustomerBusinessRules.checkIfNationalIdExists(
