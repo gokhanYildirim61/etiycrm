@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("customerservice/api/v1/cities")
 @AllArgsConstructor
@@ -40,9 +42,8 @@ public class CitiesController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "GetList")
-    public GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
-        return cityService.getAllWithPaging(pageInfo);
+    public List<GetAllCityResponse> getAll(){
+        return cityService.getAll();
     }
 
     @DeleteMapping("/{id}")

@@ -11,7 +11,8 @@ import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import java.util.List;
 
 public interface CityService {
-    List<GetAllCityResponse> getAll(PageInfo pageInfo);
+
+    List<GetAllCityResponse> getAll();
     CreatedCityResponse add(CreateCityRequest createCityRequest);
 
     UpdatedCityResponse update(UpdateCityRequest updateCityRequest);
@@ -19,8 +20,6 @@ public interface CityService {
     GetCityResponse getById(String id);
 
     City getByCityId(String id);
-
-    GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo);
 
     DeletedCityResponse softDelete(String id);
 

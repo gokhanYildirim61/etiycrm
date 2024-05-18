@@ -10,22 +10,30 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 
 
 @Mapper
 public interface CityMapper {
     CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
 
-    GetCityResponse getCityResponse(City city);
-    GetAllCityResponse getAllCityResponseFromCity(City city);
+
+    // Request to Entity
     City cityFromCreateCityRequest(CreateCityRequest createCityRequest);
-    CreatedCityResponse createdCityResponseFromCity(City city);
-//
+
     City cityFromCityUpdatedCityRequest(UpdateCityRequest updateCityRequest);
+
+
+    // Entity to Response
+    GetCityResponse getCityResponse(City city);
+
+    List<GetAllCityResponse> getAllCityResponseFromCityList(List<City>  cities);
+
+    CreatedCityResponse createdCityResponseFromCity(City city);
+
     UpdatedCityResponse updateCityResponseFromCity(City city);
 
     DeletedCityResponse deleteCityResponseFromCity(City city);
 
-    @Mapping(source = "pageCity.content", target = "items")
-    GetListResponse<GetAllCityResponse> pageInfoResponseFromPageCity(Page<City> pageCity);
+
 }

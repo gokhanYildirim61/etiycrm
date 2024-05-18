@@ -25,12 +25,12 @@ import java.util.List;
 public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
+
+
     @Override
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<City> response = cityRepository.findAll(pageable);
-//        return response.map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city)).getContent();
-        return response.map(CityMapper.INSTANCE::getAllCityResponseFromCity).getContent();
+    public List<GetAllCityResponse> getAll() {
+        List<City> cities=cityRepository.findAll();
+        return CityMapper.INSTANCE.getAllCityResponseFromCityList(cities);
     }
 
     @Override
@@ -65,17 +65,7 @@ public class CityServiceImpl implements CityService {
         return cityRepository.findById(id).get();
     }
 
-    @Override
-    public GetListResponse<GetAllCityResponse> getAllWithPaging(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<City> response = cityRepository.findAllByDeletedDateIsNull(pageable);
-        GetListResponse<GetAllCityResponse> responses = CityMapper.INSTANCE.pageInfoResponseFromPageCity(response);
-        responses.setHasNext(response.hasNext());
-        responses.setHasPrevious(response.hasPrevious());
-        responses.setPage(pageInfo.getPage());
-        return responses;
-    }
-//asd
+
     @Override
     public DeletedCityResponse softDelete(String id) {
         City city=cityRepository.findById(id).get();
