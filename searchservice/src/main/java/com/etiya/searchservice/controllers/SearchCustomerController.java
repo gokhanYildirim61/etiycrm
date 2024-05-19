@@ -17,7 +17,7 @@ public class SearchCustomerController {
 @GetMapping("/params")
     public ResponseEntity<?> search(
         @RequestParam(required = false) String nationalityId,
-        @RequestParam(required = false) String customerId,
+        @RequestParam(required = false) String id,
         @RequestParam(required = false) String accountId,
         @RequestParam(required = false) String firstName,
         @RequestParam(required = false) String middleName,
@@ -25,7 +25,7 @@ public class SearchCustomerController {
         @RequestParam(required = false) String orderId,
         @PageableDefault(size = 10, sort = "firstName") Pageable pageable){
     PageableResponse<GetAllCustomer> result = filterService.search(
-            nationalityId, customerId, accountId, firstName, middleName, lastName, orderId, pageable);
+            nationalityId, id, accountId, firstName, middleName, lastName, orderId, pageable);
             if (result.getTotalElements()>0){
                 return ResponseEntity.ok(result);
             }

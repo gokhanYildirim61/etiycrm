@@ -53,7 +53,7 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public PageableResponse<GetAllCustomer> search(
-            String nationalityId, String customerId, String accountId,
+            String nationalityId, String id, String accountId,
             String firstName, String middleName, String lastName, String orderId, Pageable pageable) {
 
 
@@ -61,32 +61,32 @@ public class FilterServiceImpl implements FilterService {
         Query query = new Query();
         List<Criteria> criteria = new ArrayList<>();
 
-        if (nationalityId != null) {
-            criteria.add(Criteria.where("nationalityId").is(nationalityId));
+        if (nationalityId != null && !nationalityId.trim().isEmpty()) {
+            criteria.add(Criteria.where("nationalityId").regex(Pattern.compile(Pattern.quote(nationalityId), Pattern.CASE_INSENSITIVE)));
         }
-        if (customerId != null) {
-            criteria.add(Criteria.where("customerId").is(customerId));
+        if (id != null && !id.trim().isEmpty()) {
+            criteria.add(Criteria.where("id").regex(Pattern.compile(Pattern.quote(id), Pattern.CASE_INSENSITIVE)));
         }
-        if (accountId != null) {
-            criteria.add(Criteria.where("accountId").is(accountId));
+        if (accountId != null && !accountId.trim().isEmpty()) {
+            criteria.add(Criteria.where("accountId").regex(Pattern.compile(Pattern.quote(accountId), Pattern.CASE_INSENSITIVE)));
         }
-        if (firstName != null) {
+        if (firstName != null && !firstName.trim().isEmpty()) {
             String normalizedFirstName = Normalizer.normalize(firstName, Normalizer.Form.NFD)
                     .replaceAll("[^\\p{ASCII}]", "").toLowerCase();
             criteria.add(Criteria.where("firstName").regex(Pattern.compile(normalizedFirstName, Pattern.CASE_INSENSITIVE)));
         }
-        if (middleName != null) {
+        if (middleName != null && !middleName.trim().isEmpty()) {
             String normalizedMiddleName = Normalizer.normalize(middleName, Normalizer.Form.NFD)
                     .replaceAll("[^\\p{ASCII}]", "").toLowerCase();
             criteria.add(Criteria.where("middleName").regex(Pattern.compile(normalizedMiddleName, Pattern.CASE_INSENSITIVE)));
         }
-        if (lastName != null) {
+        if (lastName != null && !lastName.trim().isEmpty()) {
             String normalizedLastName = Normalizer.normalize(lastName, Normalizer.Form.NFD)
                     .replaceAll("[^\\p{ASCII}]", "").toLowerCase();
             criteria.add(Criteria.where("lastName").regex(Pattern.compile(normalizedLastName, Pattern.CASE_INSENSITIVE)));
         }
-        if (orderId != null) {
-            criteria.add(Criteria.where("orderId").is(orderId));
+        if (orderId != null && !orderId.trim().isEmpty()) {
+            criteria.add(Criteria.where("orderId").regex(Pattern.compile(Pattern.quote(orderId), Pattern.CASE_INSENSITIVE)));
         }
 
         if (!criteria.isEmpty()) {
