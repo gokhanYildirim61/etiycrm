@@ -15,10 +15,8 @@ public class UpdateContactMediumRequest {
     private String customerId;
     @NotBlank(message = "Mobile Phone is required!")
     private String mobilePhone;
-    @NotBlank(message = "Home Phone is required!")
-    private String homePhone;
     @NotBlank(message = "Email is required!")
     private String email;
-    @NotBlank(message = "Fax is required!")
+    private String homePhone;
     private String fax;
 }
