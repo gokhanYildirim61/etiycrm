@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 @Mapper
 public interface IndividualCustomerMapper {
     IndividualCustomerMapper INSTANCE = Mappers.getMapper(IndividualCustomerMapper.class);
+
     GetIndividualCustomerResponse getIndividualCustomerResponse(IndividualCustomer individualCustomer);
     GetIndividualCustomerListResponse getIndividualCustomerListResponse(IndividualCustomer individualCustomer);
     IndividualCustomer individualCustomerFromIndividualCreateCustomerRequest(CreateIndividualCustomerRequest createIndividualCustomerRequest);

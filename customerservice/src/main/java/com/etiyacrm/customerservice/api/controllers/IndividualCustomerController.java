@@ -48,8 +48,8 @@ public class IndividualCustomerController {
    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getAll")
-        public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo){
-        return individualCustomerService.getAll(pageInfo);
+        public List<GetIndividualCustomerListResponse> getAll(){
+        return individualCustomerService.getAll();
    }
 
     @GetMapping("/checkNationalityId/{nationalityId}")

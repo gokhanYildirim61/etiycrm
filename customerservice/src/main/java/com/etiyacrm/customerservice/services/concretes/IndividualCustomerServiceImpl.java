@@ -84,18 +84,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo) {
+    public List<GetIndividualCustomerListResponse> getAll() {
 
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<IndividualCustomer> response = individualCustomerRepository.findAllByDeletedDateIsNull(pageable);
-        List<GetIndividualCustomerListResponse> resultList = response.getContent().stream()
-                .map(individualCustomer -> {
-                    GetIndividualCustomerListResponse responseDto = IndividualCustomerMapper.INSTANCE.getIndividualCustomerListResponse(individualCustomer);
+        List<IndividualCustomer> individualCustomerList = individualCustomerRepository.findAll();
 
-                    return responseDto;
-                })
-                .collect(Collectors.toList());
-        return resultList;
+        return individualCustomerList.stream().map(IndividualCustomerMapper.INSTANCE::getIndividualCustomerListResponse).collect(Collectors.toList());
     }
 
     @Override

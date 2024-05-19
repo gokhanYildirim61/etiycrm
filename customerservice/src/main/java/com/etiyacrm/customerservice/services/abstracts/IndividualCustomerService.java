@@ -17,14 +17,11 @@ public interface IndividualCustomerService {
 
     GetIndividualCustomerResponse getById(String id);
 
-     List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
+    List<GetIndividualCustomerListResponse> getAll();
 
     boolean checkIfNationalityIdExists(String nationalityId);
     boolean checkIfRealPerson(CheckRealPersonRequest checkRealPersonRequest) throws Exception;
 
     DeletedIndividualCustomerResponse softDelete(String id);
 
-   // GetListResponse<GetIndividualCustomerListResponse> getAllWithPaging(PageInfo pageInfo);
-
-   // List<GetIndividualCustomerListResponse> getAll(PageInfo pageInfo);
 }
