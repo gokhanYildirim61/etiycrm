@@ -75,5 +75,10 @@ public class CityServiceImpl implements CityService {
         return CityMapper.INSTANCE.deleteCityResponseFromCity(city);
     }
 
+    @Override
+    public boolean isCityExist(String id) {
+        return cityRepository.existsById(id);
+    }
+
 
 }

@@ -23,6 +23,7 @@ public interface CityService {
 
     DeletedCityResponse softDelete(String id);
 
+    boolean isCityExist(String id);
 
 
 }

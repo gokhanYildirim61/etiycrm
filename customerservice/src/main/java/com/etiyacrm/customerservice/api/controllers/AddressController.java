@@ -11,6 +11,9 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("customerservice/api/v1/addresses")
@@ -42,6 +45,12 @@ public class AddressController {
     @Operation(summary = "GetList")
     public GetListResponse<GetAllAddressResponse> getAllWithPaging(PageInfo pageInfo) {
         return addressService.getALLWithPaging(pageInfo);
+    }
+    @GetMapping("/getListWithCustomerId/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "GetListWithCustomerId")
+    public List<GetAllAddressResponse> getAllWithCustomerId(@PathVariable String customerId){
+        return addressService.getAllWithCustomerId(customerId);
     }
 
     @DeleteMapping("/{id}")

@@ -96,7 +96,6 @@ public class FilterServiceImpl implements FilterService {
         long total = mongoTemplate.count(query, Customer.class);
         System.out.println("total: " + total);
         System.out.println("query: " + query);
-        System.out.println("criteria: " + criteria);
 
         List<Customer> customers = mongoTemplate.find(query.with(pageable), Customer.class);
         List<GetAllCustomer> responses = customers.stream().map(customer -> {

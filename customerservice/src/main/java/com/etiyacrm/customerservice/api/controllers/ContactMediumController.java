@@ -40,6 +40,12 @@ public class ContactMediumController {
     public UpdateContactMediumResponse update(@RequestBody UpdateContactMediumRequest updateContactMediumRequest){
         return contactMediumService.update(updateContactMediumRequest);
     }
+    @GetMapping("/getByCustomerId/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "getByCustomerId")
+    public GetContactMediumResponse getByCustomerId(@PathVariable String customerId){
+        return contactMediumService.getByCustomerId(customerId);
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -25,7 +27,17 @@ public class AddressServiceImpl implements AddressService {
     private AddressBusinessRules addressBusinessRules;
 
     @Override
+    public List<GetAllAddressResponse> getAllWithCustomerId(String customerId) {
+        List<Address> addresses = addressRepository.findAllByCustomerIdAndDeletedDateIsNull(customerId);
+        List<GetAllAddressResponse> getAllAddressResponses = addresses.stream()
+                .map(AddressMapper.INSTANCE::getAllAddressResponseFromAddress)
+                .collect(Collectors.toList());
+        return getAllAddressResponses;
+    }
+
+    @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
+        addressBusinessRules.checkCityExist(createAddressRequest.getCityId());
         Address address= AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
         Address createdAddress= addressRepository.save(address);
         CreatedAddressResponse createdAddressResponse=AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);

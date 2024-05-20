@@ -20,6 +20,13 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
 
     @Override
+    public GetContactMediumResponse getByCustomerId(String customerId) {
+        ContactMedium contactMedium = contactMediumRepository.findByCustomerId(customerId);
+        GetContactMediumResponse response = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
+        return response;
+    }
+
+    @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
