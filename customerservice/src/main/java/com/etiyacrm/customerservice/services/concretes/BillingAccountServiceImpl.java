@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -43,9 +44,11 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public GetBillingAccountResponse getById(String id) {
-        BillingAccount billingAccount= billingAccountRepository.findById(id).get();
+        Optional<BillingAccount> billingAccountOptional = billingAccountRepository.findById(id);
+        billingAccountBusinessRules.checkBillingAccount(billingAccountOptional);
+        BillingAccount billingAccount = billingAccountOptional.get();
         billingAccountBusinessRules.checkDeletedDate(billingAccount.getDeletedDate());
-        GetBillingAccountResponse response=BillingAccountMapper.INSTANCE.getBillingAccountResponseFromBillingAccount(billingAccount);
+        GetBillingAccountResponse response = BillingAccountMapper.INSTANCE.getBillingAccountResponseFromBillingAccount(billingAccount);
         return  response;
     }
 
@@ -63,11 +66,13 @@ public class BillingAccountServiceImpl implements BillingAccountService {
 
     @Override
     public DeletedBillingAccountResponse softDelete(String id) {
-        BillingAccount billingAccount=billingAccountRepository.findById(id).get();
+        Optional<BillingAccount> billingAccountOptional = billingAccountRepository.findById(id);
+        billingAccountBusinessRules.checkBillingAccount(billingAccountOptional);
+        BillingAccount billingAccount = billingAccountOptional.get();
         billingAccountBusinessRules.checkDeletedDate(billingAccount.getDeletedDate());
         billingAccount.setDeletedDate(LocalDateTime.now());
         billingAccountRepository.save(billingAccount);
-        DeletedBillingAccountResponse deletedBillingAccountResponse=BillingAccountMapper.INSTANCE.deletedBillingAccountResponseFromBillingAccount(billingAccount);
+        DeletedBillingAccountResponse deletedBillingAccountResponse = BillingAccountMapper.INSTANCE.deletedBillingAccountResponseFromBillingAccount(billingAccount);
         return deletedBillingAccountResponse;
     }
 }

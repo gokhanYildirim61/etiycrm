@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,9 +58,10 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public GetAddressResponse getById(String id) {
-        Address address=addressRepository.findById(id).get();
-        GetAddressResponse getAddressResponse=AddressMapper.INSTANCE.getAddressResponse(address);
-
+        Optional<Address> addressOptional = addressRepository.findById(id);
+        addressBusinessRules.checkAddress(addressOptional);
+        Address address = addressOptional.get();
+        GetAddressResponse getAddressResponse = AddressMapper.INSTANCE.getAddressResponse(address);
         return getAddressResponse;
     }
 
@@ -77,13 +79,16 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public DeletedAddressResponse softDelete(String id) {
-        Address address=addressRepository.findById(id).get();
+        Optional<Address> addressOptional = addressRepository.findById(id);
+        addressBusinessRules.checkAddress(addressOptional);
+
+        Address address=addressOptional.get();
         addressBusinessRules.checkDeletedDate(address.getDeletedDate());
+
         address.setDeletedDate(LocalDateTime.now());
         addressRepository.save(address);
 
-        DeletedAddressResponse deletedAddressResponse=AddressMapper.INSTANCE.deleteAddressResponseFromAddress(address);
+        DeletedAddressResponse deletedAddressResponse = AddressMapper.INSTANCE.deleteAddressResponseFromAddress(address);
         return deletedAddressResponse;
-
     }
 }

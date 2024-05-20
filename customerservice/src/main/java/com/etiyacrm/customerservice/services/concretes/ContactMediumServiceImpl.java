@@ -7,17 +7,20 @@ import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateC
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.*;
 import com.etiyacrm.customerservice.services.mapper.ContactMediumMapper;
+import com.etiyacrm.customerservice.services.rules.ContactMediumRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
+    private ContactMediumRules contactMediumRules;
 
     @Override
     public GetContactMediumResponse getByCustomerId(String customerId) {
@@ -44,7 +47,9 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public GetContactMediumResponse getById(String id) {
-        ContactMedium contactMedium = contactMediumRepository.findById(id).get();
+        Optional<ContactMedium> contactMediumOptional = contactMediumRepository.findById(id);
+        contactMediumRules.checkContactMedium(contactMediumOptional);
+        ContactMedium contactMedium = contactMediumOptional.get();
         GetContactMediumResponse response = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
         return response;
     }
@@ -60,7 +65,9 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public DeletedContactMediumResponse softDelete(String id) {
-        ContactMedium contactMedium = contactMediumRepository.findById(id).get();
+        Optional<ContactMedium> contactMediumOptional = contactMediumRepository.findById(id);
+        contactMediumRules.checkContactMedium(contactMediumOptional);
+        ContactMedium contactMedium = contactMediumOptional.get();
         contactMedium.setDeletedDate(LocalDateTime.now());
         contactMediumRepository.save(contactMedium);
         DeletedContactMediumResponse response = ContactMediumMapper.INSTANCE.deleteContactMediumResponseFromContactMedium(contactMedium);

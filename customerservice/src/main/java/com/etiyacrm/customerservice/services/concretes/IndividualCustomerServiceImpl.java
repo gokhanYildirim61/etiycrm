@@ -2,7 +2,6 @@ package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
-import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.kafka.producer.CustomerProducer;
@@ -16,9 +15,6 @@ import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*
 import com.etiyacrm.customerservice.services.mapper.IndividualCustomerMapper;
 import com.etiyacrm.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -85,9 +81,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public List<GetIndividualCustomerListResponse> getAll() {
-
         List<IndividualCustomer> individualCustomerList = individualCustomerRepository.findAll();
-
         return individualCustomerList.stream().map(IndividualCustomerMapper.INSTANCE::getIndividualCustomerListResponse).collect(Collectors.toList());
     }
 

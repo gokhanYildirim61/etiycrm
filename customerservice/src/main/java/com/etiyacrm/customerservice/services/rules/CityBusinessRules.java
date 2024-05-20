@@ -7,7 +7,6 @@ import com.etiyacrm.customerservice.services.messages.Messages;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -22,7 +21,6 @@ public class CityBusinessRules {
         if (city.isPresent()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameExists));
         }
-
     }
 
     public void checkDeletedDate(LocalDateTime localDateTime) {
@@ -31,10 +29,16 @@ public class CityBusinessRules {
         }
     }
 
-    public void checkIfIdNotExists(String id){
-        Optional<City> city=cityRepository.findById(id);
-        if (!city.isPresent()){
-            throw new BusinessException("check if cityId not exists");
+//    public void checkIfIdNotExists(String id){
+//        Optional<City> city=cityRepository.findById(id);
+//        if (!city.isPresent()){
+//            throw new BusinessException("check if cityId not exists");
+//        }
+//    }
+
+    public void checkCity(Optional<City> city) {
+        if (!city.isPresent()) {
+            throw new BusinessException("The city not found");
         }
     }
 }

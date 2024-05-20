@@ -2,12 +2,14 @@ package com.etiyacrm.customerservice.services.rules;
 
 import com.etiyacrm.common.business.abstracts.MessageService;
 import com.etiyacrm.common.exceptions.types.BusinessException;
+import com.etiyacrm.customerservice.entities.Address;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,5 +30,9 @@ public class AddressBusinessRules {
         }
     }
 
-
+    public void checkAddress(Optional<Address> address){
+        if (!address.isPresent()){
+            throw new BusinessException("The address not found");
+        }
+    }
 }
