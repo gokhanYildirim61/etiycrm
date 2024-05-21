@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "basket-items")
+
 public class Basket {
     @Id
     @Field(name = "id")

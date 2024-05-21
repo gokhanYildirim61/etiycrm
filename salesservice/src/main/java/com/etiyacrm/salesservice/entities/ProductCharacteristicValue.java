@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ProductCharacteristicValue {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
