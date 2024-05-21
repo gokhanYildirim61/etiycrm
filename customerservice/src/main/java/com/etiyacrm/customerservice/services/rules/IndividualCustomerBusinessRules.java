@@ -35,14 +35,14 @@ public class IndividualCustomerBusinessRules {
 
     public void checkDeletedDate(LocalDateTime localDateTime){
         if (localDateTime != null){
-            throw new BusinessException("The individual customer not found");
+            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound);
         }
     }
 
     public void checkIfIndividualCustomerExists(String id){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
         if (!individualCustomer.isPresent()){
-            throw new BusinessException("The individual customer not found");
+            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound);
         }
     }
 
@@ -52,7 +52,7 @@ public class IndividualCustomerBusinessRules {
 
     public void checkIfNationalIdExists(String nationalityId, String firstName, String middleName, String lastName, int birthDate) throws Exception {
         if(!customerCheckService.checkIfRealPerson(nationalityId, (firstName + " " + middleName), lastName, birthDate)){
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IdentityNumberNotExists));
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerErrors.CheckIfPersonExistsInMernisDB));
         }
     }
 
@@ -60,7 +60,7 @@ public class IndividualCustomerBusinessRules {
         LocalDateTime now = LocalDateTime.now();
         long yearsBetween = ChronoUnit.YEARS.between(birthDate, now);
         if (yearsBetween < 18) {
-            throw new BusinessException("The Individual Customer's age must be older than 18!");
+            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.CheckAgeVerification);
         }
     }
 }

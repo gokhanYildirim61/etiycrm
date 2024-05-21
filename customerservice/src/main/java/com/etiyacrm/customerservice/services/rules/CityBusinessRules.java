@@ -19,26 +19,19 @@ public class CityBusinessRules {
         Optional<City> city = cityRepository.findByNameIgnoreCase(name);
 
         if (city.isPresent()) {
-            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameExists));
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityErrors.CityNameExists));
         }
     }
 
     public void checkDeletedDate(LocalDateTime localDateTime) {
         if (localDateTime != null) {
-            throw new BusinessException("The city not found");
+            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
         }
     }
 
-//    public void checkIfIdNotExists(String id){
-//        Optional<City> city=cityRepository.findById(id);
-//        if (!city.isPresent()){
-//            throw new BusinessException("check if cityId not exists");
-//        }
-//    }
-
     public void checkCity(Optional<City> city) {
         if (!city.isPresent()) {
-            throw new BusinessException("The city not found");
+            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
         }
     }
 }

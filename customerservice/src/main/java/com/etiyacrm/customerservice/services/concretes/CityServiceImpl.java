@@ -30,7 +30,6 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
-        //cityBusinessRules.validateCityName(createCityRequest.getName());
         cityBusinessRules.cityNameCannotBeDuplicatedWhenInserted(createCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
@@ -39,7 +38,10 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public UpdatedCityResponse update(UpdateCityRequest updateCityRequest) {
-        City city=cityRepository.findById(updateCityRequest.getId()).get();
+        cityBusinessRules.cityNameCannotBeDuplicatedWhenInserted(updateCityRequest.getName());
+        Optional<City> cityOptional = cityRepository.findById(updateCityRequest.getId());
+        cityBusinessRules.checkCity(cityOptional);
+        City city = cityOptional.get();
         cityBusinessRules.checkDeletedDate(city.getDeletedDate());
         City updatedCity=CityMapper.INSTANCE.cityFromCityUpdatedCityRequest(updateCityRequest);
         updatedCity=cityRepository.save(updatedCity);
@@ -48,20 +50,12 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public GetCityResponse getById(String id) {
-        //cityBusinessRules.checkIfIdNotExists(id);
         Optional<City> cityOptional = cityRepository.findById(id);
         cityBusinessRules.checkCity(cityOptional);
         City city = cityOptional.get();
-        //City city=cityRepository.findById(id).get();
         GetCityResponse response = CityMapper.INSTANCE.getCityResponseFromCity(city);
-        return CityMapper.INSTANCE.getCityResponseFromCity(city);
+        return response;
     }
-
-//    @Override
-//    public City getByCityId(String id) {
-//        cityBusinessRules.checkIfIdNotExists(id);
-//        return cityRepository.findById(id).get();
-//    }
 
     @Override
     public DeletedCityResponse softDelete(String id) {

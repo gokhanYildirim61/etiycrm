@@ -5,6 +5,7 @@ import com.etiyacrm.common.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.Address;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
+import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,19 +21,19 @@ public class AddressBusinessRules {
 
     public void checkDeletedDate(LocalDateTime localDateTime){
         if (localDateTime != null){
-            throw new BusinessException("The address not found");
+            throw new BusinessException(Messages.BusinessErrors.AddressErrors.AddressNotFound);
         }
     }
 
     public void checkCityExist(String cityId){
         if (!cityService.isCityExist(cityId)){
-            throw new BusinessException("The city not found");
+            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
         }
     }
 
     public void checkAddress(Optional<Address> address){
         if (!address.isPresent()){
-            throw new BusinessException("The address not found");
+            throw new BusinessException(Messages.BusinessErrors.AddressErrors.AddressNotFound);
         }
     }
 }

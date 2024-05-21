@@ -2,16 +2,27 @@ package com.etiyacrm.customerservice.services.messages;
 
 public class Messages {
     public static class BusinessErrors{
-        public static final String CityNameExists ="cityNameExists";
-        public static final String CityDeleted="cityDeleted";
-        public static final String AddressDeleted="addressDeleted";
+        public static class AddressErrors{
+            public static final String AddressNotFound = "addressNotFound";
+        }
+        public static class BillingAccountErrors{
+            public static final String BillingAccountNotFound = "billingAccountNotFound";
+        }
+        public static class CityErrors{
+            public static final String CityNameExists ="cityNameExists";
+            public static final String CityNotFound = "cityNotFound";
+        }
+        public static class ContactMediumErrors{
+            public static final String ContactMediumNotFound = "contactMediumNotFound";
+        }
+        public static class CustomerErrors{
+            public static final String CustomerNotFound = "customerNotFound";
+        }
+        public static class IndividualCustomerErrors{
+            public static final String IndividualCustomerNotFound = "individualCustomerNotFound";
+            public static final String CheckIfPersonExistsInMernisDB = "checkIfPersonExistsInMernisDB";
+            public static final String CheckAgeVerification = "checkAgeVerification";
 
-        public static final String IndividualCustomerDeleted="individualCustomerDeleted";
-        public static final String NationalityIdentityExists = "nationalityIdentityExists";
-        public static final String IndividualCustomerIdNotExists = "individualCustomerIdNotExists";
-        public static final String IdentityNumberNotExists = "identityNumberNotExists";
-
-        public static final String CustomerHasContactMedium = "customerHasContactMedium";
-        public static final String CustomerHasNoContactMedium = "customerHasNoContactMedium";
+        }
     }
 }

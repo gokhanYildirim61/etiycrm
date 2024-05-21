@@ -52,6 +52,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception {
         //IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
+        individualCustomerBusinessRules.checkIfIndividualCustomerExists(updateIndividualCustomerRequest.getId());
         Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         individualCustomerBusinessRules.checkIndividualCustomerAge(updateIndividualCustomerRequest.getBirthDate());
