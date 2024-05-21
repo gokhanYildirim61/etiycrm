@@ -13,7 +13,7 @@ import java.util.List;
 public interface CampaignService {
 
     CreatedCampaignResponse add(CreateCampaignRequest createCampaignRequest);
-    UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest, String id);
+    UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest);
     List<GetAllCampaignResponse> getAll();
     GetCampaignResponse getById(String id);
     DeletedCampaignResponse delete(String id);

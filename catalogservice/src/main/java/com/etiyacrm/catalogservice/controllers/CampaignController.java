@@ -44,9 +44,8 @@ public class CampaignController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update")
-    public UpdatedCampaignResponse update(@Valid @RequestBody UpdateCampaignRequest updateCampaignRequest,
-                                          @PathVariable String id) {
-        return campaignService.update(updateCampaignRequest, id);
+    public UpdatedCampaignResponse update(@Valid @RequestBody UpdateCampaignRequest updateCampaignRequest) {
+        return campaignService.update(updateCampaignRequest);
     }
 
     @DeleteMapping("/{id}")

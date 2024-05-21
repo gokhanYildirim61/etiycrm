@@ -37,17 +37,16 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest, String id) {
+    public UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest) {
         Campaign campaign =
                 CampaignMapper.INSTANCE.campaignFromUpdateCampaignRequest(updateCampaignRequest);
-        campaign.setId(id);
         campaign.setUpdatedDate(LocalDateTime.now());
         Campaign updatedCampaign = campaignRepository.save(campaign);
 
-        UpdatedCampaignResponse updatedCapmaignResponse =
+        UpdatedCampaignResponse updatedCampaignResponse =
                 CampaignMapper.INSTANCE.updatedCampaignResponseFromCampaign(updatedCampaign);
 
-        return updatedCapmaignResponse;
+        return updatedCampaignResponse;
     }
 
     @Override
