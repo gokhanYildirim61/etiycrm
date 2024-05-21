@@ -12,4 +12,5 @@ public class GetProductOfferResponse {
     private String name;
     private String description;
     private double price;
+    private String productId;
 }

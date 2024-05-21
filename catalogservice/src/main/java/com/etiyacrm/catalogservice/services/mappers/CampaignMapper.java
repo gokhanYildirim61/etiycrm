@@ -14,21 +14,23 @@ import org.springframework.data.domain.Page;
 public interface CampaignMapper {
     CampaignMapper INSTANCE = Mappers.getMapper(CampaignMapper.class);
 
-    GetCampaignResponse getCampaignResponse(Campaign campaign);
+    //TODO:MAPPERLAR DÜZELİTECEK SERVİCE VE CONTROLLER DÜZELTİLECEK YENİ EKLENEN ENTİTİYLER İÇİN BUNLAR YAZILACAK.
 
-    GetAllCampaignResponse getAllCampaignResponseFromCampaign(Campaign campaign);
-
-    Campaign campaignFromCreateCampaignRequest(CreateCampaignRequest createCampaignRequest);
-
-    CreatedCampaignResponse createdCampaignResponseFromCampaign(Campaign campaign);
-
-    Campaign campaignFromCampaignUpdatedCampaignRequest(UpdateCampaignRequest updateCampaignRequest);
-
-    UpdatedCampaignResponse updateCampaignResponseFromCampaign(Campaign campaign);
-
-    DeletedCampaignResponse deleteCampaignResponseFromCampaign(Campaign campaign);
-
-    @Mapping(source = "pageCampaign.content", target = "items")
-    GetListResponse<GetAllCampaignResponse> pageInfoResponseFromPageCampaign(Page<Campaign> pageCampaign);
+//    GetCampaignResponse getCampaignResponse(Campaign campaign);
+//
+//    GetAllCampaignResponse getAllCampaignResponseFromCampaign(Campaign campaign);
+//
+//    Campaign campaignFromCreateCampaignRequest(CreateCampaignRequest createCampaignRequest);
+//
+//    CreatedCampaignResponse createdCampaignResponseFromCampaign(Campaign campaign);
+//
+//    Campaign campaignFromCampaignUpdatedCampaignRequest(UpdateCampaignRequest updateCampaignRequest);
+//
+//    UpdatedCampaignResponse updateCampaignResponseFromCampaign(Campaign campaign);
+//
+//    DeletedCampaignResponse deleteCampaignResponseFromCampaign(Campaign campaign);
+//
+//    @Mapping(source = "pageCampaign.content", target = "items")
+//    GetListResponse<GetAllCampaignResponse> pageInfoResponseFromPageCampaign(Page<Campaign> pageCampaign);
 
 }

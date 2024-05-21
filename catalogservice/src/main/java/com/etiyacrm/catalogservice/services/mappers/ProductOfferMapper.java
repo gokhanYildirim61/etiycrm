@@ -14,10 +14,10 @@ import org.mapstruct.factory.Mappers;
 public interface ProductOfferMapper {
     ProductOfferMapper INSTANCE = Mappers.getMapper(ProductOfferMapper.class);
 
-    GetProductOfferResponse getProductOfferResponseFromProductOffer(ProductOffer productOffer);
-    ProductOffer productOfferFromCreateProductOfferRequest(CreateProductOfferRequest createProductOfferRequest);
-    ProductOffer productOfferFromUpdateProductOfferRequest(UpdateProductOfferRequest updateProductOfferRequest);
-    CreatedProductOfferResponse createdProductOfferResponseFromProductOffer(ProductOffer productOffer);
-    UpdatedProductOfferResponse updatedProductOfferResponseFromProductOffer(ProductOffer productOffer);
-    DeletedProductOfferResponse deleteProductOfferResponseFromProductOffer(ProductOffer productOffer);
+//    GetProductOfferResponse getProductOfferResponseFromProductOffer(ProductOffer productOffer);
+//    ProductOffer productOfferFromCreateProductOfferRequest(CreateProductOfferRequest createProductOfferRequest);
+//    ProductOffer productOfferFromUpdateProductOfferRequest(UpdateProductOfferRequest updateProductOfferRequest);
+//    CreatedProductOfferResponse createdProductOfferResponseFromProductOffer(ProductOffer productOffer);
+//    UpdatedProductOfferResponse updatedProductOfferResponseFromProductOffer(ProductOffer productOffer);
+//    DeletedProductOfferResponse deleteProductOfferResponseFromProductOffer(ProductOffer productOffer);
 }

@@ -12,8 +12,12 @@ import lombok.NoArgsConstructor;
 public class CreateCampaignRequest {
     @NotBlank(message = "Campaign name cannot be empty")
     private String name;
+
     @NotBlank(message = "Campaign description cannot be empty")
     private String description;
+
     @NotBlank(message = "Campaign code cannot be empty")
     private String code;
+
+    private int discount;
 }

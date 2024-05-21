@@ -16,6 +16,7 @@ import java.util.List;
 @Where(clause = "deleted_date IS NULL")
 @Table(name = "product_offers")
 public class ProductOffer extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
@@ -31,5 +32,31 @@ public class ProductOffer extends BaseEntity {
     private double price;
 
     @OneToMany(mappedBy = "productOffer")
-    private List<Product> products;
+    private List<CampaignProductOffer> campaignProductOffers;
+
+    @OneToMany(mappedBy = "productOffer")
+    private List<CatalogProductOffer> catalogProductOffers;
+
+    @ManyToOne()
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.UUID)
+//    @Column(name = "id")
+//    private String id;
+//
+//    @Column(name = "name")
+//    private String name;
+//
+//    @Column(name = "description")
+//    private String description;
+//
+//    @Column(name = "price")
+//    private double price;
+//
+//    @OneToMany(mappedBy = "productOffer")
+//    private List<Product> products;
 }

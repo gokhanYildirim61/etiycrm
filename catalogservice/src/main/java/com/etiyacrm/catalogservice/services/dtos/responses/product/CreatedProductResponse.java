@@ -10,7 +10,5 @@ import lombok.NoArgsConstructor;
 public class CreatedProductResponse {
     private String name;
     private String description;
-    private String productOfferId;
-    private String catalogId;
-    private String campaignId;
+
 }

@@ -16,13 +16,13 @@ import org.springframework.data.domain.Page;
 public interface CatalogMapper {
     CatalogMapper INSTANCE = Mappers.getMapper(CatalogMapper.class);
 
-    GetAllCatalogResponse getAllCatalogResponseFromCatalog(Catalog catalog);
-    Catalog catalogFromCreateCatalogRequest(CreateCatalogRequest createCatalogRequest);
-    CreatedCatalogResponse createdCatalogResponseFromCatalog(Catalog catalog);
-    Catalog catalogFromUpdateCatalogRequest(UpdateCatalogRequest updateCatalogRequest);
-    UpdatedCatalogResponse updatedCatalogResponseFromCatalog(Catalog catalog);
-    DeletedCatalogResponse deletedCatalogResponseFromCatalog(Catalog catalog);
-    GetCatalogResponse getCatalogResponseFromCatalog(Catalog catalog);
-    @Mapping(source = "pageCatalog.content", target = "items")
-    GetListResponse<GetAllCatalogResponse> pageInfoResponseFromPageCatalog(Page<Catalog> pageCatalog);
+//    GetAllCatalogResponse getAllCatalogResponseFromCatalog(Catalog catalog);
+//    Catalog catalogFromCreateCatalogRequest(CreateCatalogRequest createCatalogRequest);
+//    CreatedCatalogResponse createdCatalogResponseFromCatalog(Catalog catalog);
+//    Catalog catalogFromUpdateCatalogRequest(UpdateCatalogRequest updateCatalogRequest);
+//    UpdatedCatalogResponse updatedCatalogResponseFromCatalog(Catalog catalog);
+//    DeletedCatalogResponse deletedCatalogResponseFromCatalog(Catalog catalog);
+//    GetCatalogResponse getCatalogResponseFromCatalog(Catalog catalog);
+//    @Mapping(source = "pageCatalog.content", target = "items")
+//    GetListResponse<GetAllCatalogResponse> pageInfoResponseFromPageCatalog(Page<Catalog> pageCatalog);
 }

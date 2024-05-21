@@ -25,5 +25,9 @@ public class Catalog extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "catalog")
-    private List<Product> products;
+    private List<CatalogProductOffer> catalogProductOffer;
+
+
+//    @OneToMany(mappedBy = "catalog")
+//    private List<Product> products;
 }
