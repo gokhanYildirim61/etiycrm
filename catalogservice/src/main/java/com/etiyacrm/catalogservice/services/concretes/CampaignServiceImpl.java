@@ -16,6 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class CampaignServiceImpl implements CampaignService {
@@ -23,50 +26,62 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public CreatedCampaignResponse add(CreateCampaignRequest createCampaignRequest) {
-        Campaign campaign = CampaignMapper.INSTANCE.campaignFromCreateCampaignRequest(createCampaignRequest);
+        Campaign campaign =
+                CampaignMapper.INSTANCE.campaignFromCreateCampaignRequest(createCampaignRequest);
         Campaign createdCampaign = campaignRepository.save(campaign);
 
-        CreatedCampaignResponse createdCampaignResponse = CampaignMapper.INSTANCE.createdCampaignResponseFromCampaign(createdCampaign);
+        CreatedCampaignResponse createdCampaignResponse =
+                CampaignMapper.INSTANCE.createdCampaignResponseFromCampaign(createdCampaign);
 
         return createdCampaignResponse;
     }
 
     @Override
-    public UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest) {
-        Campaign campaign = campaignRepository.findById(updateCampaignRequest.getId()).get();
-        Campaign updatedCampaign = CampaignMapper.INSTANCE.campaignFromCampaignUpdatedCampaignRequest(updateCampaignRequest);
-        updatedCampaign = campaignRepository.save(updatedCampaign);
+    public UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest, String id) {
+        Campaign campaign =
+                CampaignMapper.INSTANCE.campaignFromUpdateCampaignRequest(updateCampaignRequest);
+        campaign.setId(id);
+        campaign.setUpdatedDate(LocalDateTime.now());
+        Campaign updatedCampaign = campaignRepository.save(campaign);
 
-        return CampaignMapper.INSTANCE.updateCampaignResponseFromCampaign(updatedCampaign);
+        UpdatedCampaignResponse updatedCapmaignResponse =
+                CampaignMapper.INSTANCE.updatedCampaignResponseFromCampaign(updatedCampaign);
+
+        return updatedCapmaignResponse;
+    }
+
+    @Override
+    public List<GetAllCampaignResponse> getAll() {
+        List<Campaign> campaignList = campaignRepository.findAll();
+        List<GetAllCampaignResponse> getAllCampaignResponseList =
+                campaignList.stream().map(CampaignMapper.INSTANCE::getAllCampaignResponseFromCampaign)
+                        .collect(Collectors.toList());
+
+        return getAllCampaignResponseList;
     }
 
     @Override
     public GetCampaignResponse getById(String id) {
         Campaign campaign = campaignRepository.findById(id).get();
-        GetCampaignResponse getCampaignResponse = CampaignMapper.INSTANCE.getCampaignResponse(campaign);
+
+        GetCampaignResponse getCampaignResponse =
+                CampaignMapper.INSTANCE.getCampaignResponseFromCampaign(campaign);
+
         return getCampaignResponse;
     }
 
     @Override
-    public GetListResponse<GetAllCampaignResponse> getAllWithPaging(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<Campaign> response = campaignRepository.findAllByDeletedDateIsNull(pageable);
-        GetListResponse<GetAllCampaignResponse> responses = CampaignMapper.INSTANCE.pageInfoResponseFromPageCampaign(response);
-        responses.setHasNext(response.hasNext());
-        responses.setHasPrevious(response.hasPrevious());
-        responses.setPage(pageInfo.getPage());
-        return responses;
-    }
-
-
-    @Override
-    public DeletedCampaignResponse softDelete(String id) {
+    public DeletedCampaignResponse delete(String id) {
         Campaign campaign = campaignRepository.findById(id).get();
+        campaign.setId(id);
         campaign.setDeletedDate(LocalDateTime.now());
-        campaignRepository.save(campaign);
+        Campaign deletedCampaign = campaignRepository.save(campaign);
 
-        DeletedCampaignResponse deletedCampaignResponse = CampaignMapper.INSTANCE.deleteCampaignResponseFromCampaign(campaign);
+        DeletedCampaignResponse deletedCampaignResponse =
+                CampaignMapper.INSTANCE.deletedCampaignResponseFromCampaign(deletedCampaign);
+
         return deletedCampaignResponse;
+
     }
 
 }

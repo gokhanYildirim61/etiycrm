@@ -1,4 +1,4 @@
 package com.etiyacrm.catalogservice.controllers;
 
-public class CamapignProductController {
+public class CampaignProductController {
 }

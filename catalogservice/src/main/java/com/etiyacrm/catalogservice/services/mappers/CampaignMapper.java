@@ -14,7 +14,15 @@ import org.springframework.data.domain.Page;
 public interface CampaignMapper {
     CampaignMapper INSTANCE = Mappers.getMapper(CampaignMapper.class);
 
-    //TODO:MAPPERLAR DÜZELİTECEK SERVİCE VE CONTROLLER DÜZELTİLECEK YENİ EKLENEN ENTİTİYLER İÇİN BUNLAR YAZILACAK.
+    GetAllCampaignResponse getAllCampaignResponseFromCampaign(Campaign campaign);
+    Campaign campaignFromCreateCampaignRequest(CreateCampaignRequest createCampaignRequest);
+    CreatedCampaignResponse createdCampaignResponseFromCampaign(Campaign campaign);
+    Campaign campaignFromUpdateCampaignRequest(UpdateCampaignRequest updateCampaignRequest);
+    UpdatedCampaignResponse updatedCampaignResponseFromCampaign(Campaign campaign);
+    DeletedCampaignResponse deletedCampaignResponseFromCampaign(Campaign campaign);
+    @Mapping(source = "discount", target = "discount")
+    GetCampaignResponse getCampaignResponseFromCampaign(Campaign campaign);
+
 
 //    GetCampaignResponse getCampaignResponse(Campaign campaign);
 //

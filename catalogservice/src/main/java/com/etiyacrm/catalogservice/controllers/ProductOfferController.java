@@ -3,15 +3,14 @@ package com.etiyacrm.catalogservice.controllers;
 import com.etiyacrm.catalogservice.services.abstracts.ProductOfferService;
 import com.etiyacrm.catalogservice.services.dtos.requests.productOffer.CreateProductOfferRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.productOffer.UpdateProductOfferRequest;
-import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.CreatedProductOfferResponse;
-import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.DeletedProductOfferResponse;
-import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.GetProductOfferResponse;
-import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.UpdatedProductOfferResponse;
+import com.etiyacrm.catalogservice.services.dtos.responses.productOffer.*;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -21,29 +20,36 @@ public class ProductOfferController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "add")
+    @Operation(summary = "Add")
     public CreatedProductOfferResponse add(@Valid @RequestBody CreateProductOfferRequest createProductOfferRequest){
         return productOfferService.add(createProductOfferRequest);
     }
 
-    @PutMapping
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "update")
-    public UpdatedProductOfferResponse update(@Valid @RequestBody UpdateProductOfferRequest updateProductOfferRequest){
-        return productOfferService.update(updateProductOfferRequest);
+    @Operation(summary = "getAll")
+    public List<GetAllProductOfferResponse> getAll(){
+        return productOfferService.getAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "getByID")
-    public GetProductOfferResponse getByID(@PathVariable String id){
+    @Operation(summary = "getById")
+    public GetProductOfferResponse getById(@PathVariable String id){
         return productOfferService.getById(id);
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "delete")
+    @Operation(summary = "Update")
+    public UpdatedProductOfferResponse update(@Valid @RequestBody UpdateProductOfferRequest updateProductOfferRequest){
+        return productOfferService.update(updateProductOfferRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete")
+    @ResponseStatus(HttpStatus.OK)
     public DeletedProductOfferResponse delete(@PathVariable String id){
-        return productOfferService.softDelete(id);
+        return productOfferService.delete(id);
     }
 }

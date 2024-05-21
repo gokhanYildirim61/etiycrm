@@ -7,9 +7,12 @@ import com.etiyacrm.catalogservice.services.dtos.responses.campaign.*;
 import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.common.business.responses.GetListResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("catalogservice/api/v1/campaigns")
@@ -19,37 +22,37 @@ public class CampaignController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "add")
-    public CreatedCampaignResponse add(@RequestBody CreateCampaignRequest createCampaignRequest){
+    @Operation(summary = "Add")
+    public CreatedCampaignResponse add(@Valid @RequestBody CreateCampaignRequest createCampaignRequest) {
         return campaignService.add(createCampaignRequest);
     }
 
-    @PutMapping
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "update")
-    public UpdatedCampaignResponse updatedCampaignResponse(@RequestBody UpdateCampaignRequest updateCampaignRequest){
-        return campaignService.update(updateCampaignRequest);
+    @Operation(summary = "getAll")
+    public List<GetAllCampaignResponse> getAll() {
+        return campaignService.getAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "getByID")
-    public GetCampaignResponse getByID(@PathVariable String id ){
+    @Operation(summary = "getById")
+    public GetCampaignResponse getById(@PathVariable String id) {
         return campaignService.getById(id);
     }
 
-    @GetMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "GetList")
-    public GetListResponse<GetAllCampaignResponse> getAllWithPaging(PageInfo pageInfo) {
-        return campaignService.getAllWithPaging(pageInfo);
+    @Operation(summary = "Update")
+    public UpdatedCampaignResponse update(@Valid @RequestBody UpdateCampaignRequest updateCampaignRequest,
+                                          @PathVariable String id) {
+        return campaignService.update(updateCampaignRequest, id);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "delete")
-    public DeletedCampaignResponse delete(@PathVariable String id){
-        return  campaignService.softDelete(id);
+    public DeletedCampaignResponse delete(@PathVariable String id) {
+        return campaignService.delete(id);
     }
-
 }

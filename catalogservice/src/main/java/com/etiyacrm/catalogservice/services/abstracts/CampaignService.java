@@ -8,15 +8,13 @@ import com.etiyacrm.catalogservice.services.dtos.responses.product.*;
 import com.etiyacrm.common.business.paging.PageInfo;
 import com.etiyacrm.common.business.responses.GetListResponse;
 
+import java.util.List;
+
 public interface CampaignService {
 
     CreatedCampaignResponse add(CreateCampaignRequest createCampaignRequest);
-
-    UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest);
-
+    UpdatedCampaignResponse update(UpdateCampaignRequest updateCampaignRequest, String id);
+    List<GetAllCampaignResponse> getAll();
     GetCampaignResponse getById(String id);
-
-    GetListResponse<GetAllCampaignResponse> getAllWithPaging(PageInfo pageInfo);
-
-    DeletedCampaignResponse softDelete(String id);
+    DeletedCampaignResponse delete(String id);
 }
