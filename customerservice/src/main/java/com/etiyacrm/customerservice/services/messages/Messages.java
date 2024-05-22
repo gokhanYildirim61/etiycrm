@@ -5,8 +5,8 @@ public class Messages {
         public static class AddressErrors{
             public static final String AddressNotFound = "addressNotFound";
         }
-        public static class BillingAccountErrors{
-            public static final String BillingAccountNotFound = "billingAccountNotFound";
+        public static class CustomerAccountErrors {
+            public static final String CustomerAccountNotFound = "customerAccountNotFound";
         }
         public static class CityErrors{
             public static final String CityNameExists ="cityNameExists";

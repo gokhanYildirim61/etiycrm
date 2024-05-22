@@ -30,6 +30,6 @@ public class Customer extends BaseEntity {
     private ContactMedium contactMedium;
 
     @OneToMany(mappedBy = "customer")
-    private List<BillingAccount> billingAccount;
+    private List<CustomerAccount> customerAccount;
 
 }

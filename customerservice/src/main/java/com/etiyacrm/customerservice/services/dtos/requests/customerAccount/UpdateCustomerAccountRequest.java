@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.requests.billingAccount;
+package com.etiyacrm.customerservice.services.dtos.requests.customerAccount;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UpdateBillingAccountRequest {
+public class UpdateCustomerAccountRequest {
     @NotBlank(message = "Account ID is required!")
     private String id;
     @NotNull(message = "Account Status is required!")

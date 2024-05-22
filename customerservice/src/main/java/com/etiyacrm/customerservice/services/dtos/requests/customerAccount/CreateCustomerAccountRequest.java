@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.services.dtos.requests.billingAccount;
+package com.etiyacrm.customerservice.services.dtos.requests.customerAccount;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CreateBillingAccountRequest {
+public class CreateCustomerAccountRequest {
     @NotNull(message = "Account Status is required!")
     private boolean status;
     @NotBlank(message = "Account Number is required!")

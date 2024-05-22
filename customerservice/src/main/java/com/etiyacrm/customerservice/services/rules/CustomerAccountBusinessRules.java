@@ -1,7 +1,7 @@
 package com.etiyacrm.customerservice.services.rules;
 
 import com.etiyacrm.common.exceptions.types.BusinessException;
-import com.etiyacrm.customerservice.entities.BillingAccount;
+import com.etiyacrm.customerservice.entities.CustomerAccount;
 import com.etiyacrm.customerservice.services.messages.Messages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,16 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class BillingAccountBusinessRules {
+public class CustomerAccountBusinessRules {
     public void checkDeletedDate(LocalDateTime localDateTime){
         if (localDateTime != null){
-            throw new BusinessException(Messages.BusinessErrors.BillingAccountErrors.BillingAccountNotFound);
+            throw new BusinessException(Messages.BusinessErrors.CustomerAccountErrors.CustomerAccountNotFound);
         }
     }
 
-    public void checkBillingAccount(Optional<BillingAccount> billingAccount) {
-        if (!billingAccount.isPresent()){
-            throw new BusinessException(Messages.BusinessErrors.BillingAccountErrors.BillingAccountNotFound);
+    public void checkCustomerAccount(Optional<CustomerAccount> customerAccount) {
+        if (!customerAccount.isPresent()){
+            throw new BusinessException(Messages.BusinessErrors.CustomerAccountErrors.CustomerAccountNotFound);
         }
     }
 }

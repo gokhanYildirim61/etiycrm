@@ -41,7 +41,7 @@ public class Address  extends BaseEntity {
 
 
     @OneToMany(mappedBy = "address")
-    private List<BillingAccount> billingAccount;
+    private List<CustomerAccount> customerAccount;
 
 
 
