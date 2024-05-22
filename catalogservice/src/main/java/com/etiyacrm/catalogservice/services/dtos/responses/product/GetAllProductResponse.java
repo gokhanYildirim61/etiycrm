@@ -11,5 +11,4 @@ public class GetAllProductResponse {
     private String id;
     private String name;
     private String description;
-
 }

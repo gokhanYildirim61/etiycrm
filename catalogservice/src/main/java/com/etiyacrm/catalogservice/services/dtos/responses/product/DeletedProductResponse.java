@@ -10,6 +10,4 @@ import lombok.NoArgsConstructor;
 public class DeletedProductResponse {
     private String id;
     private String name;
-
-
 }

@@ -5,8 +5,6 @@ import com.etiyacrm.catalogservice.services.abstracts.ProductService;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.CreateProductRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.UpdateProductRequest;
 import com.etiyacrm.catalogservice.services.dtos.responses.product.*;
-import com.etiyacrm.common.business.paging.PageInfo;
-import com.etiyacrm.common.business.responses.GetListResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,8 +41,8 @@ public class ProductController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "GetList")
-    public GetListResponse<GetAllProductResponse> getAllWithPaging(PageInfo pageInfo) {
-        return productService.getAllWithPaging(pageInfo);
+    public GetAllProductResponse getAll() {
+        return productService.getAll();
     }
 
     @DeleteMapping("/{id}")

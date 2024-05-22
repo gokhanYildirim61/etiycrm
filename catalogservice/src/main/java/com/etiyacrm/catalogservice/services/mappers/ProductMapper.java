@@ -4,16 +4,23 @@ import com.etiyacrm.catalogservice.entities.Product;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.CreateProductRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.product.UpdateProductRequest;
 import com.etiyacrm.catalogservice.services.dtos.responses.product.*;
-import com.etiyacrm.common.business.responses.GetListResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 @Mapper
 public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+
+    GetAllProductResponse getAllProductResponseFromProducts(List<Product> products);
+    Product productFromCreateProductRequest(CreateProductRequest createProductRequest);
+    CreatedProductResponse createdProductResponseFromProduct(Product product);
+    Product productFromUpdateProductRequest(UpdateProductRequest updateProductRequest);
+    UpdatedProductResponse updatedProductResponseFromProduct(Product product);
+    DeletedProductResponse deletedProductResponseFromProduct(Product product);
+    GetProductResponse getProductResponseFromProduct(Product product);
 
 //    @Mapping(source = "product.productOffer.id", target = "productOfferId")
 //    @Mapping(source = "product.catalog.id", target = "catalogId")
