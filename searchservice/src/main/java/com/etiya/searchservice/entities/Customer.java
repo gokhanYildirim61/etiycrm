@@ -24,7 +24,7 @@ public class Customer {
     @Field(name = "middleName")
     private String middleName;
 
-    @Field(name = "lastName")
+    @Field(name = "lastname")
     private String lastName;
 
     @Field(name = "motherName")
