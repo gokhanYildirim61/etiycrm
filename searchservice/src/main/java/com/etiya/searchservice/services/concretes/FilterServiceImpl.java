@@ -89,6 +89,8 @@ public class FilterServiceImpl implements FilterService {
             criteria.add(Criteria.where("orderId").regex(Pattern.compile(Pattern.quote(orderId), Pattern.CASE_INSENSITIVE)));
         }
 
+        criteria.add(Criteria.where("deletedDate").is(null));
+
         if (!criteria.isEmpty()) {
             query.addCriteria(new Criteria().andOperator(criteria.toArray(new Criteria[criteria.size()])));
         }
