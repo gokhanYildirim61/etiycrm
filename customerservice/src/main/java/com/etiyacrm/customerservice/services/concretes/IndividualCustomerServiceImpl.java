@@ -34,11 +34,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) throws Exception {
         individualCustomerBusinessRules.individualCustomerNationalityIdMustBeUnique(createIndividualCustomerRequest.getNationalityId());
         individualCustomerBusinessRules.checkIndividualCustomerAge(createIndividualCustomerRequest.getBirthDate());
-//        TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
-//        TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
-//        individualCustomerBusinessRules.checkIfNationalIdExists(
-//                createIndividualCustomerRequest.getNationalityId(),
-//                createIndividualCustomerRequest.getFirstName(), createIndividualCustomerRequest.getMiddleName(), createIndividualCustomerRequest.getLastName(), createIndividualCustomerRequest.getBirthDate().getYear());
+
         IndividualCustomer individualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualCreateCustomerRequest(createIndividualCustomerRequest);
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(individualCustomer);
 
@@ -52,16 +48,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateIndividualCustomerRequest) throws Exception {
-        //IndividualCustomer individualCustomer = individualCustomerRepository.findById(updateIndividualCustomerRequest.getId()).get();
+
         individualCustomerBusinessRules.checkIfIndividualCustomerExists(updateIndividualCustomerRequest.getId());
         Customer customer = customerService.getById(updateIndividualCustomerRequest.getId());
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         individualCustomerBusinessRules.checkIndividualCustomerAge(updateIndividualCustomerRequest.getBirthDate());
-//                TODO: Sürekli gerçek data kullanmamak için yorum satırına alındı.
-//                TODO: Gerçek data ile çalışmak için yorum satırını kaldırınız.
-//                individualCustomerBusinessRules.checkIfNationalIdExists(
-//                        updateIndividualCustomerRequest.getNationalityId(),
-//                        updateIndividualCustomerRequest.getFirstName(), updateIndividualCustomerRequest.getMiddleName(), updateIndividualCustomerRequest.getLastName(), updateIndividualCustomerRequest.getBirthDate().getYear());
+//
         IndividualCustomer updatedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromIndividualUpdatedCustomerRequest(updateIndividualCustomerRequest);
         updatedIndividualCustomer.setUpdatedDate(LocalDateTime.now());
         updatedIndividualCustomer = individualCustomerRepository.save(updatedIndividualCustomer);
@@ -105,9 +97,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         customer.setDeletedDate(LocalDateTime.now());
         customer = customerService.setDeletedDate(customer);
-//        CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromIndividualCustomer(individualCustomer);
-//        customerUpdatedEvent.setId(customer.getId());
-//        customerUpdatedEvent.setDeletedDate(customer.getDeletedDate());
+//
         CustomerDeletedEvent customerDeletedEvent = new CustomerDeletedEvent();
         customerDeletedEvent.setId(customer.getId());
         customerDeletedEvent.setDeletedDate(customer.getDeletedDate());
