@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 public interface FilterService {
     void add(Customer customer);
     void updateCustomer(Customer customer);
+    void deleteCustomer(Customer customer);
+    Customer getById(String id);
     PageableResponse<GetAllCustomer> search(
             String nationalityId, String id, String accountId,
             String firstName, String middleName, String lastName,

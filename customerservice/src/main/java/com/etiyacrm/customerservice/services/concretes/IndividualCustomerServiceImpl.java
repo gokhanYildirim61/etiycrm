@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerDeletedEvent;
 import com.etiyacrm.common.events.customers.CustomerUpdatedEvent;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
@@ -104,10 +105,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.checkDeletedDate(customer.getDeletedDate());
         customer.setDeletedDate(LocalDateTime.now());
         customer = customerService.setDeletedDate(customer);
-        CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromIndividualCustomer(individualCustomer);
-        customerUpdatedEvent.setId(customer.getId());
-        customerUpdatedEvent.setDeletedDate(customer.getDeletedDate());
-        customerProducer.sendMessage(customerUpdatedEvent);
+//        CustomerUpdatedEvent customerUpdatedEvent = IndividualCustomerMapper.INSTANCE.customerUpdatedEventFromIndividualCustomer(individualCustomer);
+//        customerUpdatedEvent.setId(customer.getId());
+//        customerUpdatedEvent.setDeletedDate(customer.getDeletedDate());
+        CustomerDeletedEvent customerDeletedEvent = new CustomerDeletedEvent();
+        customerDeletedEvent.setId(customer.getId());
+        customerDeletedEvent.setDeletedDate(customer.getDeletedDate());
+
+        customerProducer.sendMessage(customerDeletedEvent);
         return IndividualCustomerMapper.INSTANCE.deleteCustomerResponseFromCustomer(customer);
     }
 }

@@ -38,6 +38,17 @@ public class FilterServiceImpl implements FilterService {
     }
 
     @Override
+    public void deleteCustomer(Customer customer) {
+        this.filterRepository.save(customer);
+    }
+
+    @Override
+    public Customer getById(String id) {
+        Customer customer = filterRepository.findById(id).get();
+        return customer;
+    }
+
+    @Override
     public PageableResponse<GetAllCustomer> search(
             String nationalityId, String id, String accountId,
             String firstName, String middleName, String lastName, String orderId, Pageable pageable) {
