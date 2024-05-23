@@ -11,6 +11,10 @@ public class Messages {
         public static class CityErrors{
             public static final String CityNameExists ="cityNameExists";
             public static final String CityNotFound = "cityNotFound";
+            public static final String CityIdRequired = "cityIdRequired";
+            public static final String CityNameRequired = "cityNameRequired";
+            public static final String CityNameSize = "cityNameSize";
+            public static final String CityNameContainChar = "cityNameContainChar";
         }
         public static class ContactMediumErrors{
             public static final String ContactMediumNotFound = "contactMediumNotFound";
@@ -22,7 +26,7 @@ public class Messages {
             public static final String IndividualCustomerNotFound = "individualCustomerNotFound";
             public static final String CheckIfPersonExistsInMernisDB = "checkIfPersonExistsInMernisDB";
             public static final String CheckAgeVerification = "checkAgeVerification";
-
+            public static final String NationalIDExists = "nationalIDExists";
         }
     }
 }

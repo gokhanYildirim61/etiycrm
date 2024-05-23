@@ -27,22 +27,21 @@ public class IndividualCustomerBusinessRules {
 
     public void individualCustomerNationalityIdMustBeUnique(String nationalId){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByNationalityIdIgnoreCase(nationalId.trim());
-
         if(individualCustomer.isPresent()){
-            throw new BusinessException("National ID already exists");
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerErrors.NationalIDExists));
         }
     }
 
     public void checkDeletedDate(LocalDateTime localDateTime){
         if (localDateTime != null){
-            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound));
         }
     }
 
     public void checkIfIndividualCustomerExists(String id){
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
         if (!individualCustomer.isPresent()){
-            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerErrors.IndividualCustomerNotFound));
         }
     }
 
@@ -60,7 +59,7 @@ public class IndividualCustomerBusinessRules {
         LocalDateTime now = LocalDateTime.now();
         long yearsBetween = ChronoUnit.YEARS.between(birthDate, now);
         if (yearsBetween < 18) {
-            throw new BusinessException(Messages.BusinessErrors.IndividualCustomerErrors.CheckAgeVerification);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerErrors.CheckAgeVerification));
         }
     }
 }

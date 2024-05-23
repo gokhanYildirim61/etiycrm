@@ -1,5 +1,6 @@
 package com.etiyacrm.customerservice.services.rules;
 
+import com.etiyacrm.common.business.abstracts.MessageService;
 import com.etiyacrm.common.exceptions.types.BusinessException;
 
 import com.etiyacrm.customerservice.entities.Customer;
@@ -14,10 +15,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerBusinessRules {
     private CustomerRepository customerRepository;
+    private MessageService messageService;
     public void checkIfCustomerExists(String id){
         Optional<Customer> customer = customerRepository.findById(id);
         if (!customer.isPresent()) {
-            throw new BusinessException(Messages.BusinessErrors.CustomerErrors.CustomerNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CustomerErrors.CustomerNotFound));
         }
     }
 }

@@ -21,19 +21,19 @@ public class AddressBusinessRules {
 
     public void checkDeletedDate(LocalDateTime localDateTime){
         if (localDateTime != null){
-            throw new BusinessException(Messages.BusinessErrors.AddressErrors.AddressNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.AddressErrors.AddressNotFound));
         }
     }
 
     public void checkCityExist(String cityId){
         if (!cityService.isCityExist(cityId)){
-            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityErrors.CityNotFound));
         }
     }
 
     public void checkAddress(Optional<Address> address){
         if (!address.isPresent()){
-            throw new BusinessException(Messages.BusinessErrors.AddressErrors.AddressNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.AddressErrors.AddressNotFound));
         }
     }
 }

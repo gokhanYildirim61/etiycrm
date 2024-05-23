@@ -25,13 +25,13 @@ public class CityBusinessRules {
 
     public void checkDeletedDate(LocalDateTime localDateTime) {
         if (localDateTime != null) {
-            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityErrors.CityNotFound));
         }
     }
 
     public void checkCity(Optional<City> city) {
         if (!city.isPresent()) {
-            throw new BusinessException(Messages.BusinessErrors.CityErrors.CityNotFound);
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityErrors.CityNotFound));
         }
     }
 }
